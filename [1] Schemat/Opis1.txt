@@ -1,0 +1,322 @@
+Tabela "Salony":
+SalonID (klucz główny)
+Nazwa
+Adres
+Numer telefonu
+
+Tabela "Marki samochodów":
+MarkaID (klucz główny)
+Nazwa
+Koncern
+
+Tabela "Modele samochodów":
+ModelID (klucz główny)
+Nazwa modelu
+Opis
+Rok produkcji
+MarkaID (klucz obcy)
+WersjaID (klucz obcy)
+
+Tabela "Samochody":
+SamochodID (klucz główny)
+Numer rejestracyjny
+VIN
+Rok produkcji
+Przebieg
+ModelID (klucz obcy)
+SalonID (klucz obcy)
+
+Tabela "Zamówienia":
+ZamówienieID (klucz główny)
+Data zamówienia
+KlientID (klucz obcy)
+SamochodID (klucz obcy)
+SalonID (klucz obcy)
+
+Tabela "Pracownicy":
+PracownikID (klucz główny)
+Imię
+Nazwisko
+Data zatrudnienia
+Stanowisko
+SalonID (klucz obcy)
+
+Tabela "Wypożyczenia":
+WypożyczenieID (klucz główny)
+Data wypożyczenia
+Data zwrotu
+KlientID (klucz obcy)
+SamochodID (klucz obcy)
+SalonID (klucz obcy)
+
+Tabela "Serwisy":
+SerwisID (klucz główny)
+Nazwa
+Adres
+Numer telefonu
+SalonID (klucz obcy)
+
+Tabela "Naprawy":
+NaprawaID (klucz główny)
+Opis usterki
+Data zgłoszenia
+Data rozpoczęcia naprawy
+Data zakończenia naprawy
+Cena
+SerwisID (klucz obcy)
+SamochodID (klucz obcy)
+
+Tabela "Części":
+CzęśćID (klucz główny)
+Nazwa
+Opis
+Cena
+
+Tabela "Zamówienia części":
+ZamówienieCzęściID (klucz główny)
+Data zamówienia
+SamochodID (klucz obcy)
+CzęśćID (klucz obcy)
+SalonID (klucz obcy)
+
+Tabela "Adresy":
+AdresID (klucz główny)
+Nazwa obiektu (np. nazwa salonu samochodowego, imię i nazwisko klienta)
+Ulica
+Numer budynku
+Kod pocztowy
+Miasto
+Kraj
+yp obiektu (np. salon samochodowy, klient, pracownik)
+Telefon
+E-mail
+Inne informacje o obiekcie
+
+Tabela "Klienci":
+KlientID (klucz główny)
+Imię
+Nazwisko
+AdresID (klucz obcy)
+Numer telefonu
+Adres e-mail
+Preferowane modele samochodów
+Inne informacje o kliencie
+
+Tabela "Rezerwacje":
+SerwisID (klucz główny)
+SamochodID (klucz obcy)
+Data serwisu
+Rodzaj serwisu
+Koszt serwisu
+Inne informacje o serwisie
+
+Tabela "WynajemSamochodów":
+WynajemID (klucz główny)
+KlientID (klucz obcy)
+SamochodID (klucz obcy)
+Data wynajmu
+
+Tabela "HistoriaWynajmów":
+HistoriaID (klucz główny)
+KlientID (klucz obcy)
+SamochodID (klucz obcy)
+Data wynajmu
+Data zwrotu
+Kwota wynajmu
+Status wynajmu (czy samochód został już zwrócony, czy nie)
+Inne informacje o wynajmie
+
+Tabela "Silniki":
+SilnikID (klucz główny)
+Marka
+Model
+Pojemność
+Moc
+Typ paliwa
+Inne informacje o silniku
+
+Tabela "WersjeWyposażenia":
+WersjaID (klucz główny)
+Nazwa wersji
+Opis
+Dodatkowe funkcje
+Cena
+MarkaID (klucz obcy)
+
+Tabela "Transakcje":
+TransakcjaID (klucz główny)
+Data transakcji
+Cena
+KlientID (klucz obcy)
+SamochodID (klucz obcy)
+PracownikID (klucz obcy)
+
+
+
+
+Relacje między tabelami:
+
+Salon samochodowy może mieć wiele pracowników, wiele samochodów, wiele zamówień, wiele wypożyczeń i wiele serwisów. Dlatego tabela "Salony" ma klucz główny SalonID, który jest powiązany z kluczami obcymi w tabelach "Pracownicy", "Samochody", "Zamówienia", "Wypożyczenia" i "Serwisy".
+
+Każda marka samochodów może mieć wiele modeli. Dlatego tabela "Marki samochodów" ma klucz główny MarkaID, który jest powiązany z kluczami obcymi w tabeli "Modele samochodów".
+
+Każdy model samochodu należy do konkretnej marki i może mieć wiele wersji wyposażenia. Dlatego tabela "Modele samochodów" ma klucz główny ModelID, który jest powiązany z kluczem obcym MarkaID w tabeli "Marki samochodów" oraz kluczami obcymi WersjaID w tabeli "WersjeWyposażenia".
+
+Każdy samochód jest związany z konkretnym modelem i konkretnym salonem. Dlatego tabela "Samochody" ma klucz główny SamochodID, który jest powiązany z kluczami obcymi w tabelach "Modele samochodów" i "Salony".
+
+Każde zamówienie jest związane z konkretnym klientem, konkretnym samochodem i konkretnym salonem. Dlatego tabela "Zamówienia" ma klucz główny ZamówienieID, który jest powiązany z kluczami obcymi w tabelach "Klienci", "Samochody" i "Salony".
+
+Każdy pracownik pracuje w konkretnym salonie. Dlatego tabela "Pracownicy" ma klucz główny PracownikID, który jest powiązany z kluczem obcym SalonID w tabeli "Salony".
+
+Każde wypożyczenie jest związane z konkretnym klientem, konkretnym samochodem i konkretnym salonem. Dlatego tabela "Wypożyczenia" ma klucz główny WypożyczenieID, który jest powiązany z kluczami obcymi w tabelach "Klienci", "Samochody" i "Salony".
+
+Każdy serwis należy do konkretnego salonu. Dlatego tabela "Serwisy" ma klucz główny SerwisID, który jest powiązany z kluczami obcymi w tabeli "Salony".
+
+Każda naprawa jest związana z konkretnym serwisem i konkretnym samochodem. Dlatego tabela "Naprawy" ma klucz główny NaprawaID, który jest powiązany z kluczami obcymi w tabelach "Serwisy" i "Samochody".
+
+Każda część może być zamówiona dla konkretnego samochodu w konkretnym salonie. Dlatego tabela "Części" ma klucz główny CzęśćID
+
+
+
+
+
+abela "Salony":
+
+Klient -> Adresy (klucz obcy)
+Tabela "Marki samochodów":
+
+Model -> Marki samochodów (klucz obcy)
+Wersja wyposażenia -> Marki samochodów (klucz obcy)
+Tabela "Modele samochodów":
+
+Samochód -> Modele samochodów (klucz obcy)
+Marki samochodów -> Modele samochodów (klucz obcy)
+Wersja wyposażenia -> Modele samochodów (klucz obcy)
+Tabela "Samochody":
+
+Model -> Samochody (klucz obcy)
+Salon -> Samochody (klucz obcy)
+Zamówienie -> Samochody (klucz obcy)
+Wypożyczenie -> Samochody (klucz obcy)
+Naprawa -> Samochody (klucz obcy)
+Zamówienie części -> Samochody (klucz obcy)
+Klient -> Samochody (klucz obcy)
+WynajemSamochodów -> Samochody (klucz obcy)
+HistoriaWynajmów -> Samochody (klucz obcy)
+Tabela "Zamówienia":
+
+Klient -> Zamówienia (klucz obcy)
+Samochód -> Zamówienia (klucz obcy)
+Salon -> Zamówienia (klucz obcy)
+Tabela "Pracownicy":
+
+Salon -> Pracownicy (klucz obcy)
+Transakcja -> Pracownicy (klucz obcy)
+Tabela "Wypożyczenia":
+
+Klient -> Wypożyczenia (klucz obcy)
+Samochód -> Wypożyczenia (klucz obcy)
+Salon -> Wypożyczenia (klucz obcy)
+Tabela "Serwisy":
+
+Salon -> Serwisy (klucz obcy)
+Naprawa -> Serwisy (klucz obcy)
+Rezerwacje -> Serwisy (klucz obcy)
+Tabela "Naprawy":
+
+Serwis -> Naprawy (klucz obcy)
+Samochód -> Naprawy (klucz obcy)
+Tabela "Części":
+
+Zamówienie części -> Części (klucz obcy)
+Tabela "Zamówienia części":
+
+Samochód -> Zamówienia części (klucz obcy)
+Część -> Zamówienia części (klucz obcy)
+Salon -> Zamówienia części (klucz obcy)
+Tabela "Adresy":
+
+Klient -> Adresy (klucz obcy)
+Pracownik -> Adresy (klucz obcy)
+Salon -> Adresy (klucz obcy)
+Tabela "Klienci":
+
+Adres -> Klienci (klucz obcy)
+Zamówienie -> Klienci (klucz obcy)
+Samochód -> Klienci (klucz obcy)
+Wypożyczenie -> Klienci (klucz obcy)
+WynajemSamochodów -> Klienci (klucz obcy)
+HistoriaWynajmów -> Klienci
+
+
+
+
+Oto relacje między tabelami:
+
+Salon - Samochód (jeden do wielu) - Salon może mieć wiele samochodów, ale każdy samochód może należeć tylko do jednego salonu.
+Marka - Model (jeden do wielu) - Marka może mieć wiele modeli, ale każdy model może należeć tylko do jednej marki.
+Marka - WersjaWyposażenia (jeden do wielu) - Marka może mieć wiele wersji wyposażenia, ale każda wersja wyposażenia może należeć tylko do jednej marki.
+Model - Samochód (jeden do wielu) - Model może mieć wiele samochodów, ale każdy samochód może należeć tylko do jednego modelu.
+WersjaWyposażenia - Samochód (jeden do wielu) - Wersja wyposażenia może mieć wiele samochodów, ale każdy samochód może mieć tylko jedną wersję wyposażenia.
+Samochód - Zamówienie (jeden do wielu) - Samochód może być zamówiony w wielu zamówieniach, ale każde zamówienie dotyczy tylko jednego samochodu.
+Klient - Zamówienie (jeden do wielu) - Klient może złożyć wiele zamówień, ale każde zamówienie dotyczy tylko jednego klienta.
+Samochód - Wypożyczenie (jeden do wielu) - Samochód może być wypożyczony wiele razy, ale każde wypożyczenie dotyczy tylko jednego samochodu.
+Klient - Wypożyczenie (jeden do wielu) - Klient może wypożyczyć wiele samochodów, ale każde wypożyczenie dotyczy tylko jednego klienta.
+Salon - Pracownik (jeden do wielu) - Salon może zatrudniać wielu pracowników, ale każdy pracownik może pracować tylko w jednym salonie.
+Salon - Samochód (jeden do wielu) - Salon może mieć wiele samochodów, ale każdy samochód może być znajdować się tylko w jednym salonie.
+Serwis - Naprawa (jeden do wielu) - Serwis może wykonać wiele napraw, ale każda naprawa odnosi się tylko do jednego serwisu.
+Samochód - Naprawa (jeden do wielu) - Samochód może mieć wiele napraw, ale każda naprawa dotyczy tylko jednego samochodu.
+Część - ZamówienieCzęści (jeden do wielu) - Część może być zamówiona w wielu zamówieniach części, ale każde zamówienie części dotyczy tylko jednej części.
+Samochód - ZamówienieCzęści (jeden do wielu) - Samochód może mieć wiele zamówień części, ale każde zamówienie części dotyczy tylko jednego samochodu.
+Klient - Adres (jeden do jednego) - Klient ma tylko jeden adres, a każdy adres może przypisywać się
+
+
+
+Relacja Klient - Adres jest typu jeden do jednego (1:1), ponieważ jeden klient ma jeden adres zamieszkania, a jeden adres zamieszkania jest przypisany do jednego klienta.
+
+Relacja Klient - Rezerwacje jest typu jeden do wielu (1:N), ponieważ jeden klient może dokonać wielu rezerwacji, ale każda rezerwacja jest przypisana tylko do jednego klienta.
+
+Relacja Klient - WynajemSamochodów jest typu jeden do wielu (1:N), ponieważ jeden klient może wynająć wiele samochodów, ale każdy wynajem samochodu jest przypisany tylko do jednego klienta.
+
+Relacja Klient - HistoriaWynajmów jest typu jeden do wielu (1:N), ponieważ jeden klient może mieć wiele wpisów w historii wynajmów, ale każdy wpis w historii wynajmów jest przypisany tylko do jednego klienta.
+
+Relacja Samochody - Rezerwacje jest typu jeden do wielu (1:N), ponieważ jeden samochód może być zarezerwowany wiele razy, ale każda rezerwacja dotyczy tylko jednego samochodu.
+
+Relacja Samochody - Wypożyczenia jest typu jeden do wielu (1:N), ponieważ jeden samochód może być wypożyczony wiele razy, ale każde wypożyczenie jest przypisane tylko do jednego samochodu.
+
+Relacja Samochody - Naprawy jest typu jeden do wielu (1:N), ponieważ jeden samochód może być naprawiany wiele razy, ale każda naprawa jest przypisana tylko do jednego samochodu.
+
+Relacja Marki samochodów - Modele samochodów jest typu jeden do wielu (1:N), ponieważ jedna marka samochodu może mieć wiele modeli, ale każdy model jest przypisany tylko do jednej marki samochodu.
+
+Relacja Modele samochodów - Samochody jest typu jeden do wielu (1:N), ponieważ jeden model samochodu może mieć wiele egzemplarzy, ale każdy egzemplarz jest przypisany tylko do jednego modelu samochodu.
+
+Relacja WersjeWyposażenia - Modele samochodów jest typu jeden do wielu (1:N), ponieważ jedna wersja wyposażenia może być stosowana w wielu modelach samochodów, ale każdy model samochodu może mieć tylko jedną wersję wyposażenia.
+
+Relacja Pracownicy - Salony jest typu jeden do wielu (1:N), ponieważ jeden pracownik może pracować w wielu salonach, ale każdy salon zatrudnia tylko jednego pracownika na jednym stanowisku.
+
+Relacja Samochody - Zamówienia jest typu jeden do wielu (1:N), ponieważ jeden samochód może być zamówiony wiele razy, ale każde zamówienie dotyczy tylko jednego samochodu.
+
+Relacja Zamówienia - Klienci jest typu jeden do wielu (1:N), ponieważ jedno zamówienie może być złożone przez jednego klienta, ale jeden klient może
+
+Relacja Klient - WynajemSamochodów: jeden klient może wynająć wiele samochodów, a jeden samochód może być wynajmowany przez wielu klientów (relacja wiele-do-wielu). Kluczami obcymi są KlientID i SamochodID.
+
+Relacja Klient - HistoriaWynajmów: jeden klient może mieć wiele wynajmów, a jeden wynajem dotyczy jednego samochodu i jednego klienta (relacja jeden-do-wielu). Kluczami obcymi są KlientID i SamochodID.
+
+Relacja Samochód - WynajemSamochodów: jeden samochód może być wynajmowany wiele razy, a jedno wynajęcie dotyczy jednego samochodu i jednego klienta (relacja jeden-do-wielu). Kluczami obcymi są SamochodID i KlientID.
+
+Relacja Samochód - HistoriaWynajmów: jeden samochód może być wynajmowany wiele razy, a jedno wynajęcie dotyczy jednego samochodu i jednego klienta (relacja jeden-do-wielu). Kluczami obcymi są SamochodID i KlientID.
+
+Relacja Model - WersjeWyposażenia: jeden model może mieć wiele wersji wyposażenia, a jedna wersja wyposażenia dotyczy jednego modelu (relacja jeden-do-wielu). Kluczami obcymi są ModelID i MarkaID.
+
+Relacja Marka - WersjeWyposażenia: jedna marka może mieć wiele wersji wyposażenia, a jedna wersja wyposażenia dotyczy jednej marki (relacja jeden-do-wielu). Kluczami obcymi są MarkaID i ModelID.
+
+Relacja Serwis - Naprawy: jeden serwis może przeprowadzać wiele napraw, a jedna naprawa dotyczy jednego serwisu i jednego samochodu (relacja jeden-do-wielu). Kluczami obcymi są SerwisID i SamochodID.
+
+Relacja Samochód - Naprawy: jeden samochód może być naprawiany wiele razy, a jedna naprawa dotyczy jednego samochodu i jednego serwisu (relacja jeden-do-wielu). Kluczami obcymi są SamochodID i SerwisID.
+
+Relacja Część - Zamówienia części: jedna część może być zamawiana wiele razy, a jedno zamówienie dotyczy jednej części i jednego samochodu (relacja jeden-do-wielu). Kluczami obcymi są CzęśćID, SamochodID i SalonID.
+
+Relacja Samochód - Zamówienia części: jeden samochód może być wymagać wielu części, a jedna część może być zamawiana dla jednego samochodu (relacja jeden-do-wielu). Kluczami obcymi są SamochodID i CzęśćID.
+
+Relacja Salon - Wypożyczenia: jeden salon może wypożyczać wiele samochodów, a jeden samochód może być wypożyczany z wielu salonów
+

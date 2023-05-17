@@ -1,0 +1,265 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS `SalonSamochodowy`;
+DROP TABLE IF EXISTS `Samochod`;
+DROP TABLE IF EXISTS `Model`;
+DROP TABLE IF EXISTS `Silniki`;
+DROP TABLE IF EXISTS `Pracownicy`;
+DROP TABLE IF EXISTS `Klient`;
+DROP TABLE IF EXISTS `Adres`;
+DROP TABLE IF EXISTS `Naprawa`;
+DROP TABLE IF EXISTS `JazdaProbna`;
+DROP TABLE IF EXISTS `Platność`;
+DROP TABLE IF EXISTS `Sprzedaz`;
+DROP TABLE IF EXISTS `Akcesoria`;
+DROP TABLE IF EXISTS `Stanowiska`;
+DROP TABLE IF EXISTS `WersjaWyposazenia`;
+DROP TABLE IF EXISTS `Wynajem`;
+DROP TABLE IF EXISTS `WynajemSamochodu`;
+DROP TABLE IF EXISTS `Czesci`;
+DROP TABLE IF EXISTS `ZamowieniaCzesci`;
+DROP TABLE IF EXISTS `RezerwacjaSamochodow`;
+DROP TABLE IF EXISTS `DodatkoweWyposazenie`;
+DROP TABLE IF EXISTS `Magazyn`;
+SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE `SalonSamochodowy` (
+    `ID_Salonu` INTEGER(10) NOT NULL,
+    `ID_Adres` INTEGER(10) NOT NULL,
+    `Nazwa` VARCHAR(100) NOT NULL,
+    PRIMARY KEY (`ID_Salonu`)
+);
+
+CREATE TABLE `Samochod` (
+    `ID_Samochodu` INTEGER(10) NOT NULL,
+    `ID_Model` INTEGER(10) NOT NULL,
+    `ID_Salonu` INTEGER(10) NOT NULL,
+    `ID_Wersja` INTEGER(10) NOT NULL,
+    `ID_Wyposazenie` INTEGER(10),
+    `ID_Akcesoria` INTEGER(10),
+    `Naped` VARCHAR(10) NOT NULL,
+    `Kolor` VARCHAR(10) NOT NULL,
+    `VIN` VARCHAR(15) NOT NULL,
+    `RokProdukcji` DATE NOT NULL,
+    `Przebieg` INTEGER(100) NOT NULL,
+    `Cena` FLOAT(5,2) NOT NULL,
+    PRIMARY KEY (`ID_Samochodu`),
+    UNIQUE (`VIN`)
+);
+
+CREATE TABLE `Model` (
+    `ID_Model` INTEGER(10) NOT NULL,
+    `Nazwa` VARCHAR(100) NOT NULL,
+    `Generacja` INTEGER(4) NOT NULL,
+    `Typ_nadwozia` VARCHAR(10) NOT NULL,
+    `Segment` VARCHAR(1) NOT NULL,
+    `Liczba_drzwi` INTEGER(3) NOT NULL,
+    `SrednieSpalanie` FLOAT(4,2) NOT NULL,
+    `Waga` INTEGER(10) NOT NULL,
+    PRIMARY KEY (`ID_Model`)
+);
+
+CREATE TABLE `Silniki` (
+    `ID_Silnik` INTEGER(10) NOT NULL,
+    `Pojemnosc` INTEGER(5) NOT NULL,
+    `Moc_kW` INTEGER(5) NOT NULL,
+    `Moc_KM` INTEGER(5) NOT NULL,
+    `MomentObrotowy` INTEGER(5) NOT NULL,
+    `TypSilnika` INTEGER NOT NULL,
+    `Paliwo` VARCHAR(10) NOT NULL,
+    `Numer` VARCHAR(15) NOT NULL,
+    PRIMARY KEY (`ID_Silnik`),
+    UNIQUE (`Numer`)
+);
+
+CREATE TABLE `Pracownicy` (
+    `ID_Pracownik` INTEGER(10) NOT NULL,
+    `ID_Salon` INTEGER(10) NOT NULL,
+    `ID_Adres` INTEGER(10) NOT NULL,
+    `ID_stanowisko` INTEGER(10) NOT NULL,
+    `Imie` VARCHAR(100) NOT NULL,
+    `Nazwisko` VARCHAR(100) NOT NULL,
+    `Email` VARCHAR(100) NOT NULL,
+    `Telefon` INTEGER(10) NOT NULL,
+    `Pensja` FLOAT(5,2) NOT NULL,
+    PRIMARY KEY (`ID_Pracownik`),
+    UNIQUE (`Email`, `Telefon`)
+);
+
+CREATE TABLE `Klient` (
+    `ID_Klient` INTEGER(10) NOT NULL,
+    `ID_Adres` INTEGER(10) NOT NULL,
+    `Imie` VARCHAR(100) NOT NULL,
+    `Nazwisko` VARCHAR(100) NOT NULL,
+    `Email` VARCHAR(100) NOT NULL,
+    `Telefon` INTEGER(10) NOT NULL,
+    PRIMARY KEY (`ID_Klient`),
+    UNIQUE (`Email`, `Telefon`)
+);
+
+CREATE TABLE `Adres` (
+    `ID_Adres` INTEGER(10) NOT NULL,
+    `Miasto` VARCHAR(100),
+    `Miejscowosc` VARCHAR(100),
+    `NumerDomu` VARCHAR(3),
+    `NumerMieszkania` VARCHAR(3),
+    `KodPocztowy` VARCHAR(10) NOT NULL,
+    `Ulica` VARCHAR(100),
+    PRIMARY KEY (`ID_Adres`)
+);
+
+CREATE TABLE `Naprawa` (
+    `ID_Naprawa` INTEGER(10) NOT NULL,
+    `ID_Samochod` INTEGER(10) NOT NULL,
+    `ID_Pracownika` INTEGER(10) NOT NULL,
+    `ID_Czesc` INTEGER(10) NOT NULL,
+    `TypNaprawy` VARCHAR(15) NOT NULL,
+    `DataPrzyjecia` DATE NOT NULL,
+    `DataWydania` DATE,
+    `Cena` FLOAT(5,2),
+    PRIMARY KEY (`ID_Naprawa`)
+);
+
+CREATE TABLE `JazdaProbna` (
+    `ID_JazdaProbna` INTEGER(10) NOT NULL,
+    `ID_Samochod` INTEGER(10) NOT NULL,
+    `ID_Pracownik` INTEGER(10) NOT NULL,
+    `ID_Klient` INTEGER(10) NOT NULL,
+    `Data` DATE NOT NULL,
+    PRIMARY KEY (`ID_JazdaProbna`)
+);
+
+CREATE TABLE `Platność` (
+    `ID_Platnosc` INTEGER(10) NOT NULL,
+    `ID_Sprzedaz` INTEGER(10) NOT NULL,
+    `RodzajDokumentu` VARCHAR(10) NOT NULL,
+    `FormaPlatnosci` VARCHAR(10) NOT NULL,
+    `Data` INTEGER NOT NULL,
+    PRIMARY KEY (`ID_Platnosc`)
+);
+
+CREATE TABLE `Sprzedaz` (
+    `ID_Sprzedaz` INTEGER(10) NOT NULL,
+    `ID_Samochod` INTEGER(10),
+    `ID_Akcesorium` INTEGER(10),
+    `ID_Pracownik` INTEGER(10) NOT NULL,
+    `ID_Klient` INTEGER(10) NOT NULL,
+    `Data` DATE NOT NULL,
+    `Klient` INTEGER NOT NULL,
+    `Kwota` FLOAT(5,2) NOT NULL,
+    PRIMARY KEY (`ID_Sprzedaz`)
+);
+
+CREATE TABLE `Akcesoria` (
+    `ID_Akcesorium` INTEGER(10) NOT NULL,
+    `ID_Samochod` INTEGER(10) NOT NULL,
+    `Nazwa` VARCHAR(100) NOT NULL,
+    `Cena` FLOAT(5,2) NOT NULL,
+    `Column1` INTEGER NOT NULL,
+    PRIMARY KEY (`ID_Akcesorium`)
+);
+
+CREATE TABLE `Stanowiska` (
+    `ID_Stanowiska` INTEGER(10) NOT NULL,
+    `Nazwa` VARCHAR(100) NOT NULL,
+    `PremiaZaStanowisko` INTEGER(3) NOT NULL,
+    PRIMARY KEY (`ID_Stanowiska`)
+);
+
+CREATE TABLE `WersjaWyposazenia` (
+    `ID_Wersja` INTEGER(10) NOT NULL,
+    `Nazwa` VARCHAR(100) NOT NULL,
+    `PoziomWyposazenia` INTEGER(2) NOT NULL,
+    `Cena` FLOAT(5,2) NOT NULL,
+    PRIMARY KEY (`ID_Wersja`)
+);
+
+CREATE TABLE `Wynajem` (
+    `ID_Wynajem` INTEGER(10) NOT NULL,
+    `ID_Klient` INTEGER(10) NOT NULL,
+    `ID_Pracownik` INTEGER(10) NOT NULL,
+    `ID_Samochod` INTEGER(10) NOT NULL,
+    `DataWynajmu` DATE NOT NULL,
+    `DataZwrotu` DATE,
+    `Cena` FLOAT(5,2) NOT NULL,
+    `Status` VARCHAR(10) NOT NULL,
+    PRIMARY KEY (`ID_Wynajem`)
+);
+
+CREATE TABLE `Czesci` (
+    `ID_Czesc` INTEGER(10) NOT NULL,
+    `ID_Samochod` INTEGER(10) NOT NULL,
+    `Nazwa` VARCHAR(100) NOT NULL,
+    `Numer` VARCHAR(15) NOT NULL,
+    `Cena` FLOAT(5,2) NOT NULL,
+    PRIMARY KEY (`ID_Czesc`),
+    UNIQUE (`Numer`)
+);
+
+CREATE TABLE `ZamowieniaCzesci` (
+    `ID_Zamowienia` INTEGER(10) NOT NULL,
+    `ID_Salon` INTEGER(10) NOT NULL,
+    `ID_Czesc` INTEGER(10) NOT NULL,
+    `Data` DATE NOT NULL,
+    `Cena` FLOAT(5,2) NOT NULL,
+    PRIMARY KEY (`ID_Zamowienia`)
+);
+
+CREATE TABLE `RezerwacjaSamochodow` (
+    `ID_Rezerwacja` INTEGER(10) NOT NULL,
+    `ID_Pracownik` INTEGER(10) NOT NULL,
+    `Status` VARCHAR(100) NOT NULL,
+    `DataRezerwacji` DATE NOT NULL,
+    PRIMARY KEY (`ID_Rezerwacja`)
+);
+
+CREATE TABLE `DodatkoweWyposazenie` (
+    `ID_Wyposazenie` INTEGER(10) NOT NULL,
+    `Nazwa` VARCHAR(100) NOT NULL,
+    `Cena` FLOAT(5,2) NOT NULL,
+    `Column1` INTEGER NOT NULL,
+    PRIMARY KEY (`ID_Wyposazenie`)
+);
+
+CREATE TABLE `Magazyn` (
+    `ID_Magazyn` INTEGER(10) NOT NULL,
+    `ID_Samochod` INTEGER(10) NOT NULL,
+    `ID_Silnik` INTEGER(10) NOT NULL,
+    `ID_Czesc` INTEGER(10) NOT NULL,
+    `ID_Akcesorium` INTEGER(10) NOT NULL,
+    `Ilosc` INTEGER(10),
+    PRIMARY KEY (`ID_Magazyn`)
+);
+
+ALTER TABLE `SalonSamochodowy` ADD FOREIGN KEY (`ID_Adres`) REFERENCES `Adres`(`ID_Adres`);
+ALTER TABLE `Samochod` ADD FOREIGN KEY (`ID_Salonu`) REFERENCES `SalonSamochodowy`(`ID_Salonu`);
+ALTER TABLE `Samochod` ADD FOREIGN KEY (`ID_Model`) REFERENCES `Model`(`ID_Model`);
+ALTER TABLE `Samochod` ADD FOREIGN KEY (`ID_Wersja`) REFERENCES `WersjaWyposazenia`(`ID_Wersja`);
+ALTER TABLE `Samochod` ADD FOREIGN KEY (`ID_Wyposazenie`) REFERENCES `DodatkoweWyposazenie`(`ID_Wyposazenie`);
+ALTER TABLE `Samochod` ADD FOREIGN KEY (`ID_Akcesoria`) REFERENCES `Akcesoria`(`ID_Akcesorium`);
+ALTER TABLE `Pracownicy` ADD FOREIGN KEY (`ID_Salon`) REFERENCES `SalonSamochodowy`(`ID_Salonu`);
+ALTER TABLE `Pracownicy` ADD FOREIGN KEY (`ID_Adres`) REFERENCES `Adres`(`ID_Adres`);
+ALTER TABLE `Pracownicy` ADD FOREIGN KEY (`ID_stanowisko`) REFERENCES `Stanowiska`(`ID_Stanowiska`);
+ALTER TABLE `Klient` ADD FOREIGN KEY (`ID_Adres`) REFERENCES `Adres`(`ID_Adres`);
+ALTER TABLE `Naprawa` ADD FOREIGN KEY (`ID_Samochod`) REFERENCES `Samochod`(`ID_Samochodu`);
+ALTER TABLE `Naprawa` ADD FOREIGN KEY (`ID_Pracownika`) REFERENCES `Pracownicy`(`ID_Pracownik`);
+ALTER TABLE `Naprawa` ADD FOREIGN KEY (`ID_Czesc`) REFERENCES `Czesci`(`ID_Czesc`);
+ALTER TABLE `JazdaProbna` ADD FOREIGN KEY (`ID_Samochod`) REFERENCES `Samochod`(`ID_Samochodu`);
+ALTER TABLE `JazdaProbna` ADD FOREIGN KEY (`ID_Pracownik`) REFERENCES `Pracownicy`(`ID_Pracownik`);
+ALTER TABLE `JazdaProbna` ADD FOREIGN KEY (`ID_Klient`) REFERENCES `Klient`(`ID_Klient`);
+ALTER TABLE `Platność` ADD FOREIGN KEY (`ID_Sprzedaz`) REFERENCES `Sprzedaz`(`ID_Sprzedaz`);
+ALTER TABLE `Sprzedaz` ADD FOREIGN KEY (`ID_Pracownik`) REFERENCES `Pracownicy`(`ID_Pracownik`);
+ALTER TABLE `Sprzedaz` ADD FOREIGN KEY (`ID_Klient`) REFERENCES `Klient`(`ID_Klient`);
+ALTER TABLE `Sprzedaz` ADD FOREIGN KEY (`ID_Samochod`) REFERENCES `Samochod`(`ID_Samochodu`);
+ALTER TABLE `Sprzedaz` ADD FOREIGN KEY (`ID_Akcesorium`) REFERENCES `Akcesoria`(`ID_Akcesorium`);
+ALTER TABLE `Akcesoria` ADD FOREIGN KEY (`ID_Samochod`) REFERENCES `Samochod`(`ID_Samochodu`);
+ALTER TABLE `Wynajem` ADD FOREIGN KEY (`ID_Samochod`) REFERENCES `Samochod`(`ID_Samochodu`);
+ALTER TABLE `Wynajem` ADD FOREIGN KEY (`ID_Klient`) REFERENCES `Klient`(`ID_Klient`);
+ALTER TABLE `Wynajem` ADD FOREIGN KEY (`ID_Pracownik`) REFERENCES `Pracownicy`(`ID_Pracownik`);
+ALTER TABLE `Czesci` ADD FOREIGN KEY (`ID_Samochod`) REFERENCES `Samochod`(`ID_Samochodu`);
+ALTER TABLE `ZamowieniaCzesci` ADD FOREIGN KEY (`ID_Salon`) REFERENCES `SalonSamochodowy`(`ID_Salonu`);
+ALTER TABLE `ZamowieniaCzesci` ADD FOREIGN KEY (`ID_Czesc`) REFERENCES `Czesci`(`ID_Czesc`);
+ALTER TABLE `RezerwacjaSamochodow` ADD FOREIGN KEY (`ID_Pracownik`) REFERENCES `Pracownicy`(`ID_Pracownik`);
+ALTER TABLE `Magazyn` ADD FOREIGN KEY (`ID_Silnik`) REFERENCES `Silniki`(`ID_Silnik`);
+ALTER TABLE `Magazyn` ADD FOREIGN KEY (`ID_Akcesorium`) REFERENCES `Akcesoria`(`ID_Akcesorium`);
+ALTER TABLE `Magazyn` ADD FOREIGN KEY (`ID_Samochod`) REFERENCES `Samochod`(`ID_Samochodu`);
+ALTER TABLE `Magazyn` ADD FOREIGN KEY (`ID_Czesc`) REFERENCES `Czesci`(`ID_Czesc`);

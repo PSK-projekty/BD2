@@ -1,0 +1,142 @@
+SalonSamochodowy - zawiera informacje o salonie samochodowym
+    ID_Salon - klucz główny, identyfikator salonu
+    Nazwa - nazwa salonu
+
+Samochód - zawiera informacje o samochodach sprzedawanych przez salony samochodowe. 
+    ID_Samochodu - klucz główny, identyfikator samochodu
+    ID_Model - model samochodu
+    ID_Salon - klucz obcy, identyfikator dealera, który sprzedaje samochód
+    Napęd - rodzaj napędu
+    Kolor
+    VIN
+    RokProdukcji - rok produkcji samochodu
+    Przebieg - przebieg samochodu
+    Cena - cena samochodu
+
+Model 
+    ID_Model
+    Generacja
+    Typ_nadwozia
+    Segment
+    Liczba_drzwi
+    Średnie zużycie paliwa
+    Waga
+
+Silniki - zawiera informacje o silnikach montowanych w samochodach.
+	ID_Silnik - klucz główny, identyfikator silnika
+	Pojemność - pojemność w centymetrach sześciennych
+	Moc_kW	- moc w kilowatach
+	Moc_KM - moc w koniach mechanicznych
+    Moment_obrotowy
+    Typ_silnika
+	Paliwo - rodzaj paliwa
+	Numer - numer silnika
+
+Pracownicy - zawiera informacje o samochodach sprzedawanych przez salony samochodowe. 
+    ID pracownika klucz główny, identyfikator pracownika
+    ID_salonu - id salonu w którym pracuje
+    ID_adres - id adresu pracownika
+    ID_Stanowisko
+    Imię - imie pracownika
+    Nazwisko - nazwisko pracownika
+    Adres e-mail - email pracownika
+    Numer_telefonu
+    Pensja 
+
+KLient - zawiera informacje o klientach salonów samochodowych.
+    ID_Customer - klucz główny, identyfikator klienta
+    Imię - imię klienta
+    Nazwisko - nazwisko klienta
+    ID_Adres - adres klienta
+    Telefon - numer telefonu klienta
+
+Adres - zawiera informacje o adresach.
+    ID_adres - klucz główny
+    Ulica
+    Miasto
+    Miejscowość
+    Kod_pocztowy
+    Kraj
+
+Serwis - zawiera informacje o serwisach.
+    ID_serwisu
+    ID_samochodu
+    ID_pracownika
+    Typ_serwisu (wymiana oleju, akcja serwisowa, wymiana gwarancyjna...)
+    Data_przyjęcia
+    Data_wydania
+    Koszt
+
+JazdaPróbna - zawiera informacje o próbnych jazdach samochodami. Tabela zawiera następujące kolumny:
+    ID_JazdaPróbna- klucz główny, identyfikator próbnej jazdy
+    Data - data przeprowadzenia próbnej jazdy
+    ID_Samochodu - klucz obcy, identyfikator samochodu, który był testowany
+    ID_Klienta - klucz obcy, identyfikator klienta, który przeprowadził próbną jazdę
+
+Płatność - zawiera informacje o płatnościach za sprzedane samochody. Tabela zawiera następujące kolumny:
+    ID_Płatności - klucz główny, identyfikator płatności
+    ID_Sprzedaży - klucz obcy, identyfikator sprzedaży, za którą została dokonana płatność
+    RodzajDokumentu(faktura, paragon)
+    FormaPłatności(gotówka, przelew)
+    DataPłatności - data płatności za sprzedany samochód
+    Kwota - kwota płatności
+
+Sprzedaż - informacje o sprzedaży
+    ID_Sprzedaży
+    ID_Samochodu
+    ID_Akcesoria
+    ID_pracownika
+    Data
+    Kwota
+
+Akcesoria - informacje o dostępnych akcesoriach
+    ID_Akcesorium
+    Nazwa
+    Cena
+    ID_Model
+    RokProdukcjiModelu
+
+Stanowiska - informacje o stanowiskah pracowników
+    ID_Stanowiska
+    Nazwa
+
+WersjaWyposazenia - informacje o pakietach
+    ID_wersja
+    Nazwa
+    Cena
+    PoziomWyposażenia
+
+HistoriaWynajmów
+    HistoriaID (klucz główny)
+    KlientID (klucz obcy)
+    SamochodID (klucz obcy)
+    Data wynajmu
+    Data zwrotu
+    Kwota wynajmu
+    Status wynajmu (czy samochód został już zwrócony, czy nie)
+
+WynajemSamochodów
+    WynajemID (klucz główny)
+    KlientID (klucz obcy)
+    SamochodID (klucz obcy)
+    Data wynajmu
+
+Części
+    CzęśćID (klucz główny)
+    ID_Samochodu
+    Nazwa
+    Cena
+
+Zamówienia części
+    ZamówienieCzęściID (klucz główny)
+    Data zamówienia
+    SamochodID (klucz obcy)
+    CzęśćID (klucz obcy)
+    SalonID (klucz obcy)
+
+Zamówienia samochodów
+    ID zamówienia (klucz główny)
+    Data
+    ID sprzedawcy (klucz obcy)
+    ID samochodu (klucz obcy)
+    Status
