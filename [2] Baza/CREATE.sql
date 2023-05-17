@@ -1,4 +1,4 @@
-DROP TABLE SalonSamochodowy CASCADE CONSTRAINTS;
+DROP TABLE Salon_Samochodowy CASCADE CONSTRAINTS;
 DROP TABLE Samochod CASCADE CONSTRAINTS;
 DROP TABLE Model CASCADE CONSTRAINTS;
 DROP TABLE Silniki CASCADE CONSTRAINTS;
@@ -6,15 +6,15 @@ DROP TABLE Pracownicy CASCADE CONSTRAINTS;
 DROP TABLE Klient CASCADE CONSTRAINTS;
 DROP TABLE Adres CASCADE CONSTRAINTS;
 DROP TABLE Naprawa CASCADE CONSTRAINTS;
-DROP TABLE JazdaProbna CASCADE CONSTRAINTS;
+DROP TABLE Jazda_Probna CASCADE CONSTRAINTS;
 DROP TABLE Platnosc CASCADE CONSTRAINTS;
 DROP TABLE Sprzedaz CASCADE CONSTRAINTS;
 DROP TABLE Akcesoria CASCADE CONSTRAINTS;
 DROP TABLE Stanowiska CASCADE CONSTRAINTS;
-DROP TABLE WersjaWyposazenia CASCADE CONSTRAINTS;
+DROP TABLE Wersja_Wyposazenia CASCADE CONSTRAINTS;
 DROP TABLE Wynajem CASCADE CONSTRAINTS;
 DROP TABLE Czesci CASCADE CONSTRAINTS;
-DROP TABLE DodatkoweWyposazenie CASCADE CONSTRAINTS;
+DROP TABLE Dodatkowe_Wyposazenie CASCADE CONSTRAINTS;
 DROP TABLE Magazyn CASCADE CONSTRAINTS;
 DROP TABLE Wynajem_Pracownicy CASCADE CONSTRAINTS;
 DROP TABLE Wynajem_Klient CASCADE CONSTRAINTS;
@@ -22,10 +22,10 @@ DROP TABLE Czesci_Samochod CASCADE CONSTRAINTS;
 DROP TABLE Wynajem_Samochod CASCADE CONSTRAINTS;
 DROP TABLE Akcesoria_Samochod CASCADE CONSTRAINTS;
 DROP TABLE Dodatkowe_Samochod CASCADE CONSTRAINTS;
-DROP TABLE WyposazenieSprzedaz CASCADE CONSTRAINTS;
+DROP TABLE Wyposazenie_Sprzedaz CASCADE CONSTRAINTS;
 
 
-CREATE TABLE SalonSamochodowy (
+CREATE TABLE Salon_Samochodowy (
     ID_Salonu NUMBER(10) NOT NULL,
     ID_Adres NUMBER(10) NOT NULL,
     Nazwa VARCHAR2(100) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE Model (
     Typ_nadwozia VARCHAR2(10) NOT NULL,
     Segment VARCHAR2(1) NOT NULL,
     Liczba_drzwi NUMBER(3) NOT NULL,
-    SrednieSpalanie NUMBER(4,2) NOT NULL,
+    Srednie_spalanie NUMBER(4,2) NOT NULL,
     Waga NUMBER(10) NOT NULL,
     PRIMARY KEY (ID_Model)
 );
@@ -70,8 +70,8 @@ CREATE TABLE Silniki (
     Pojemnosc NUMBER(5),
     Moc_kW NUMBER(5) NOT NULL,
     Moc_KM NUMBER(5) NOT NULL,
-    MomentObrotowy NUMBER(5) NOT NULL,
-    TypSilnika VARCHAR2(10) NOT NULL,
+    Moment_obrotowy NUMBER(5) NOT NULL,
+    Typ_silnika VARCHAR2(10) NOT NULL,
     Paliwo VARCHAR2(10),
     Numer VARCHAR2(15) NOT NULL,
     PRIMARY KEY (ID_Silnik),
@@ -109,9 +109,9 @@ CREATE TABLE Adres (
     ID_Adres NUMBER(10) NOT NULL,
     Miasto VARCHAR2(100),
     Miejscowosc VARCHAR2(100),
-    NumerDomu VARCHAR2(3),
-    NumerMieszkania VARCHAR2(3),
-    KodPocztowy VARCHAR2(10) NOT NULL,
+    Numer_domu VARCHAR2(3),
+    Numer_mieszkania VARCHAR2(3),
+    Kod_pocztowy VARCHAR2(10) NOT NULL,
     Ulica VARCHAR2(100),
     PRIMARY KEY (ID_Adres)
 );
@@ -121,27 +121,27 @@ CREATE TABLE Naprawa (
     ID_Samochod NUMBER(10) NOT NULL,
     ID_Pracownika NUMBER(10) NOT NULL,
     ID_Czesc NUMBER(10) NOT NULL,
-    TypNaprawy VARCHAR2(15) NOT NULL,
-    DataPrzyjecia DATE NOT NULL,
-    DataWydania DATE,
+    Typ_naprawy VARCHAR2(15) NOT NULL,
+    Data_przyjecia DATE NOT NULL,
+    Data_wydania DATE,
     Cena NUMBER(5,2),
     PRIMARY KEY (ID_Naprawa)
 );
 
-CREATE TABLE JazdaProbna (
-    ID_JazdaProbna NUMBER(10) NOT NULL,
+CREATE TABLE Jazda_Probna (
+    ID_Jazda_Probna NUMBER(10) NOT NULL,
     ID_Samochod NUMBER(10) NOT NULL,
     ID_Pracownik NUMBER(10) NOT NULL,
     ID_Klient NUMBER(10) NOT NULL,
     Data DATE NOT NULL,
-    PRIMARY KEY (ID_JazdaProbna)
+    PRIMARY KEY (ID_Jazda_Probna)
 );
 
 CREATE TABLE Platnosc (
     ID_Platnosc NUMBER(10) NOT NULL,
     ID_Sprzedaz NUMBER(10) NOT NULL,
-    RodzajDokumentu VARCHAR2(10) NOT NULL,
-    FormaPlatnosci VARCHAR2(10) NOT NULL,
+    Rodzaj_dokumentu VARCHAR2(10) NOT NULL,
+    Forma_platnosci VARCHAR2(10) NOT NULL,
     Data NUMBER NOT NULL,
     PRIMARY KEY (ID_Platnosc)
 );
@@ -173,14 +173,14 @@ CREATE TABLE Akcesoria (
 CREATE TABLE Stanowiska (
     ID_Stanowiska NUMBER(10) NOT NULL,
     Nazwa VARCHAR2(100) NOT NULL,
-    PremiaZaStanowisko NUMBER(3) NOT NULL,
+    Premia_za_stanowisko NUMBER(3) NOT NULL,
     PRIMARY KEY (ID_Stanowiska)
 );
 
-CREATE TABLE WersjaWyposazenia (
+CREATE TABLE Wersja_Wyposazenia (
     ID_Wersja NUMBER(10) NOT NULL,
     Nazwa VARCHAR2(100) NOT NULL,
-    PoziomWyposazenia NUMBER(2) NOT NULL,
+    Poziom_wyposazenia NUMBER(2) NOT NULL,
     Cena NUMBER(5,2) NOT NULL,
     PRIMARY KEY (ID_Wersja)
 );
@@ -190,8 +190,8 @@ CREATE TABLE Wynajem (
     ID_Wynajem_Klient NUMBER(10) NOT NULL,
     ID_Wynajem_Pracownicy NUMBER(10) NOT NULL,
     ID_Wynajem_Samochod NUMBER(10) NOT NULL,
-    DataWynajmu DATE NOT NULL,
-    DataZwrotu DATE,
+    Data_wynajmu DATE NOT NULL,
+    Data_zwrotu DATE,
     Cena NUMBER(5,2) NOT NULL,
     PRIMARY KEY (ID_Wynajem)
 );
@@ -206,7 +206,7 @@ CREATE TABLE Czesci (
     UNIQUE (Numer)
 );
 
-CREATE TABLE DodatkoweWyposazenie (
+CREATE TABLE Dodatkowe_Wyposazenie (
     ID_Wyposazenie NUMBER(10) NOT NULL,
     ID_Dodatkowe_Samochod NUMBER(10) NOT NULL,
     Nazwa VARCHAR2(100) NOT NULL,
@@ -266,26 +266,26 @@ CREATE TABLE Dodatkowe_Samochod (
     PRIMARY KEY (ID_Dodatkowe_Samochod)
 );
 
-CREATE TABLE WyposazenieSprzedaz (
-    ID_WyposazenieSprzedaz NUMBER(10) NOT NULL,
+CREATE TABLE Wyposazenie_Sprzedaz (
+    ID_Wyposazenie_Sprzedaz NUMBER(10) NOT NULL,
     ID_Wyposazenie NUMBER(10) NOT NULL,
     ID_Sprzedaz NUMBER(10) NOT NULL,
-    PRIMARY KEY (ID_WyposazenieSprzedaz)
+    PRIMARY KEY (ID_Wyposazenie_Sprzedaz)
 );
 
-ALTER TABLE SalonSamochodowy ADD FOREIGN KEY (ID_Adres) REFERENCES Adres(ID_Adres);
+ALTER TABLE Salon_Samochodowy ADD FOREIGN KEY (ID_Adres) REFERENCES Adres(ID_Adres);
 
-ALTER TABLE Samochod ADD FOREIGN KEY (ID_Salonu) REFERENCES SalonSamochodowy(ID_Salonu);
+ALTER TABLE Samochod ADD FOREIGN KEY (ID_Salonu) REFERENCES Salon_Samochodowy(ID_Salonu);
 ALTER TABLE Samochod ADD FOREIGN KEY (ID_Model) REFERENCES Model(ID_Model);
 ALTER TABLE Samochod ADD FOREIGN KEY (ID_Silnik) REFERENCES Silniki(ID_Silnik);
-ALTER TABLE Samochod ADD FOREIGN KEY (ID_Wersja) REFERENCES WersjaWyposazenia(ID_Wersja);
+ALTER TABLE Samochod ADD FOREIGN KEY (ID_Wersja) REFERENCES Wersja_Wyposazenia(ID_Wersja);
 ALTER TABLE Samochod ADD FOREIGN KEY (ID_Czesci_Samochod) REFERENCES Czesci_Samochod(ID_Czesci_Samochod);
 ALTER TABLE Samochod ADD FOREIGN KEY (ID_Wynajem_Samochod) REFERENCES Wynajem_Samochod(ID_Wynajem_Samochod);
 ALTER TABLE Samochod ADD FOREIGN KEY (ID_Dodatkowe_Samochod) REFERENCES Dodatkowe_Samochod(ID_Dodatkowe_Samochod);
-ALTER TABLE Samochod ADD FOREIGN KEY (ID_Wyposazenie) REFERENCES DodatkoweWyposazenie(ID_Wyposazenie);
+ALTER TABLE Samochod ADD FOREIGN KEY (ID_Wyposazenie) REFERENCES Dodatkowe_Wyposazenie(ID_Wyposazenie);
 ALTER TABLE Samochod ADD FOREIGN KEY (ID_Akcesoria_Samochod) REFERENCES Akcesoria_Samochod(ID_Akcesoria_Samochod);
 
-ALTER TABLE Pracownicy ADD FOREIGN KEY (ID_Salon) REFERENCES SalonSamochodowy(ID_Salonu);
+ALTER TABLE Pracownicy ADD FOREIGN KEY (ID_Salon) REFERENCES Salon_Samochodowy(ID_Salonu);
 ALTER TABLE Pracownicy ADD FOREIGN KEY (ID_Adres) REFERENCES Adres(ID_Adres);
 ALTER TABLE Pracownicy ADD FOREIGN KEY (ID_Stanowisko) REFERENCES Stanowiska(ID_Stanowiska);
 ALTER TABLE Pracownicy ADD FOREIGN KEY (ID_Wynajem_Pracownicy) REFERENCES Wynajem_Pracownicy(ID_wynajem_pracownicy);
@@ -297,9 +297,9 @@ ALTER TABLE Naprawa ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samocho
 ALTER TABLE Naprawa ADD FOREIGN KEY (ID_Pracownika) REFERENCES Pracownicy(ID_Pracownik);
 ALTER TABLE Naprawa ADD FOREIGN KEY (ID_Czesc) REFERENCES Czesci(ID_Czesc);
 
-ALTER TABLE JazdaProbna ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
-ALTER TABLE JazdaProbna ADD FOREIGN KEY (ID_Pracownik) REFERENCES Pracownicy(ID_Pracownik);
-ALTER TABLE JazdaProbna ADD FOREIGN KEY (ID_Klient) REFERENCES Klient(ID_Klient);
+ALTER TABLE Jazda_Probna ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
+ALTER TABLE Jazda_Probna ADD FOREIGN KEY (ID_Pracownik) REFERENCES Pracownicy(ID_Pracownik);
+ALTER TABLE Jazda_Probna ADD FOREIGN KEY (ID_Klient) REFERENCES Klient(ID_Klient);
 
 ALTER TABLE Platnosc ADD FOREIGN KEY (ID_Sprzedaz) REFERENCES Sprzedaz(ID_Sprzedaz);
 
@@ -309,7 +309,7 @@ ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samoch
 ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Akcesorium) REFERENCES Akcesoria(ID_Akcesorium);
 ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Czesc) REFERENCES Czesci(ID_Czesc);
 ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Naprawa) REFERENCES Naprawa(ID_Naprawa);
-ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Wyposazenie) REFERENCES DodatkoweWyposazenie(ID_Wyposazenie);
+ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Wyposazenie) REFERENCES Dodatkowe_Wyposazenie(ID_Wyposazenie);
 ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Wynajem) REFERENCES Wynajem(ID_Wynajem);
 
 ALTER TABLE Akcesoria ADD FOREIGN KEY (ID_Akcesoria_Samochod) REFERENCES Akcesoria_Samochod(ID_Akcesoria_Samochod);
@@ -320,7 +320,7 @@ ALTER TABLE Wynajem ADD FOREIGN KEY (ID_Wynajem_Pracownicy) REFERENCES Wynajem_P
 
 ALTER TABLE Czesci ADD FOREIGN KEY (ID_Czesci_Samochod) REFERENCES Czesci_Samochod(ID_Czesci_Samochod);
 
-ALTER TABLE DodatkoweWyposazenie ADD FOREIGN KEY (ID_Dodatkowe_Samochod) REFERENCES Dodatkowe_Samochod(ID_Dodatkowe_Samochod);
+ALTER TABLE Dodatkowe_Wyposazenie ADD FOREIGN KEY (ID_Dodatkowe_Samochod) REFERENCES Dodatkowe_Samochod(ID_Dodatkowe_Samochod);
 
 ALTER TABLE Magazyn ADD FOREIGN KEY (ID_Silnik) REFERENCES Silniki(ID_Silnik);
 ALTER TABLE Magazyn ADD FOREIGN KEY (ID_Akcesorium) REFERENCES Akcesoria(ID_Akcesorium);
@@ -342,7 +342,7 @@ ALTER TABLE Wynajem_Samochod ADD FOREIGN KEY (ID_Wynajem) REFERENCES Wynajem(ID_
 ALTER TABLE Akcesoria_Samochod ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
 ALTER TABLE Akcesoria_Samochod ADD FOREIGN KEY (ID_Akcesoria) REFERENCES Akcesoria(ID_Akcesorium);
 ALTER TABLE Dodatkowe_Samochod ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
-ALTER TABLE Dodatkowe_Samochod ADD FOREIGN KEY (ID_Dodatkowe) REFERENCES DodatkoweWyposazenie(ID_Wyposazenie);
+ALTER TABLE Dodatkowe_Samochod ADD FOREIGN KEY (ID_Dodatkowe) REFERENCES Dodatkowe_Wyposazenie(ID_Wyposazenie);
 
-ALTER TABLE WyposazenieSprzedaz ADD FOREIGN KEY (ID_Wyposazenie) REFERENCES DodatkoweWyposazenie(ID_Wyposazenie);
-ALTER TABLE WyposazenieSprzedaz ADD FOREIGN KEY (ID_Sprzedaz) REFERENCES Sprzedaz(ID_Sprzedaz);
+ALTER TABLE Wyposazenie_Sprzedaz ADD FOREIGN KEY (ID_Wyposazenie) REFERENCES Dodatkowe_Wyposazenie(ID_Wyposazenie);
+ALTER TABLE Wyposazenie_Sprzedaz ADD FOREIGN KEY (ID_Sprzedaz) REFERENCES Sprzedaz(ID_Sprzedaz);
