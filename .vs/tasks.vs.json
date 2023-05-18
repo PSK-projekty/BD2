@@ -5,6 +5,11 @@
       "taskLabel": "zadanie-Projekt",
       "appliesTo": "/",
       "type": "launch"
+    },
+    {
+      "taskLabel": "zadanie-Projekt",
+      "appliesTo": "/",
+      "type": "launch"
     }
   ]
 }
