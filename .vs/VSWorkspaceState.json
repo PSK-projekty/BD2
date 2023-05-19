@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\01 - baza",
+    "\\01 - baza\\Generator"
   ],
+  "SelectedNode": "\\01 - baza\\Generator\\main.cpp",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,1 @@
+sqlldr CONTROL=akcesoria.ctl   skip=1   

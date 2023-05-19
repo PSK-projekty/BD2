@@ -1,0 +1,1 @@
+sqlldr CONTROL=platnosc.ctl   skip=0   

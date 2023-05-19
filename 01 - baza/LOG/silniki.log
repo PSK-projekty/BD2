@@ -1,0 +1,65 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Fri May 19 19:35:52 2023
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Loader\silniki\silniki.ctl
+Data File:      .\\Dane\\silniki.csv
+  File processing option string: "str '\r\n'"
+  Bad File:     Loader\silniki\silniki.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table SILNIKI, loaded from every logical record.
+Insert option in effect for this table: REPLACE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+ID_SILNIK                           FIRST     *   ,  O(") CHARACTER            
+                                                      O(")
+POJEMNOSC                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+MOC_KW                               NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+MOC_KM                               NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+MOMENT_OBROTOWY                      NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+TYP_SILNIKA                          NEXT    20   ,  O(") CHARACTER            
+                                                      O(")
+PALIWO                               NEXT    20   ,  O(") CHARACTER            
+                                                      O(")
+NUMER                                NEXT    15   ,  O(") CHARACTER            
+                                                      O(")
+
+
+Table SILNIKI:
+  100 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 338000 bytes(250 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:           100
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Fri May 19 19:35:52 2023
+Run ended on Fri May 19 19:35:52 2023
+
+Elapsed time was:     00:00:00.24
+CPU time was:         00:00:00.16

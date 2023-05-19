@@ -1,0 +1,1 @@
+sqlldr CONTROL=czesci_samochod.ctl   skip=0   
