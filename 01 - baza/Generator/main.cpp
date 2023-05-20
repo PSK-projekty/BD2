@@ -229,7 +229,7 @@ void czesci () {
 	for( i = 1; i <= 500; i++ ) {
 		int ID_Czesc = i;
 		char Nazwa[101];
-		snprintf (Nazwa, sizeof (Nazwa), "Czêœæ %d", i);
+		snprintf (Nazwa, sizeof (Nazwa), "Czesc %d", i);
 		char Numer[16];
 		generateNumer (Numer);
 		float Cena = randomFloat (100.0, 3000.0);
