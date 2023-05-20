@@ -12,23 +12,33 @@
 
 --Zapytanie 2: Naprawy samochodów, grupowane według typu naprawy, statusu naprawy i roku przyjęcia.
 
-    SELECT Typ_naprawy, CASE WHEN Data_wydania IS NULL THEN 'W naprawie' ELSE 'Zakończona' END AS StatusNaprawy, EXTRACT(YEAR FROM Data_przyjecia) AS RokPrzyjecia, COUNT(*) AS LiczbaNapraw
+    SELECT n.Typ_naprawy, 
+        CASE 
+            WHEN n.Data_wydania IS NULL THEN 'W naprawie' 
+            ELSE 'Zakończona' 
+        END AS StatusNaprawy, 
+        EXTRACT(YEAR FROM n.Data_przyjecia) AS RokPrzyjecia, 
+        COUNT(*) AS LiczbaNapraw
     FROM Naprawa n
-    JOIN Sprzedaz s ON n.ID_Naprawa = s.ID_Naprawa
-    GROUP BY CUBE (Typ_naprawy, CASE WHEN Data_wydania IS NULL THEN 'W naprawie' ELSE 'Zakończona' END, EXTRACT(YEAR FROM Data_przyjecia));
+    JOIN Samochod s ON n.ID_Samochod = s.ID_Samochodu
+    JOIN Model m ON s.ID_Model = m.ID_Model
+    GROUP BY CUBE (n.Typ_naprawy, CASE WHEN n.Data_wydania IS NULL THEN 'W naprawie' ELSE 'Zakończona' END, EXTRACT(YEAR FROM n.Data_przyjecia));
 
-    --To zapytanie generuje zestawienie, w którym dla każdej kombinacji typu naprawy, statusu naprawy (czy jest zakończona czy w trakcie) i roku przyjęcia naprawy podaje liczbę przeprowadzonych napraw. Dzięki użyciu operatora CUBE, wynik zawiera również sumy częściowe dla poszczególnych poziomów grupowania, np. sumę napraw dla konkretnego typu niezależnie od statusu i roku przyjęcia.
-    --Task competed in 0,056 seconds
+    --To zapytanie analizuje dane dotyczące napraw samochodowych i oblicza liczbę napraw dla różnych kategorii, takich jak typ naprawy, status naprawy (w naprawie lub zakończona) oraz rok przyjęcia naprawy. Wykorzystuje operację GROUP BY CUBE, która generuje wyniki dla wszystkich kombinacji wartości wskazanych kolumn.
+    --Task competed in 0,338 seconds
     --377 rows
 
 --Zapytanie 3: Liczba klientów i sprzedanych samochodów według miasta i segmentu.
 
-    SELECT s.ID_Salonu, s.rokprodukcji AS Rok, SUM(sp.Kwota) AS SumaSprzedazy
+    SELECT a.Miasto, m.Segment, COUNT(DISTINCT k.ID_Klient) AS LiczbaKlientow, COUNT(DISTINCT sp.ID_Samochod) AS LiczbaSprzedanychSamochodow
     FROM Sprzedaz sp
+    JOIN Klient k ON sp.ID_Klient = k.ID_Klient
+    JOIN Adres a ON k.ID_Adres = a.ID_Adres
     JOIN Samochod s ON sp.ID_Samochod = s.ID_Samochodu
-    GROUP BY CUBE (s.ID_Salonu, s.rokprodukcji)
-    ORDER BY s.ID_Salonu, s.rokprodukcji;
+    JOIN Model m ON s.ID_Model = m.ID_Model
+    GROUP BY CUBE (a.Miasto, m.Segment)
+    ORDER BY a.Miasto, m.Segment;
 
-    --o zapytanie generuje zestawienie, które przedstawia liczbę klientów i sprzedanych samochodów dla różnych kombinacji miasta i segmentu. Dzięki zastosowaniu CUBE, otrzymujemy pełne zestawienie dla wszystkich możliwych kombinacji grup
-    --Task competed in 0,148 seconds
-    --285 rows
+    --To zapytanie grupuje dane ze sprzedaży samochodów na podstawie miasta (a.Miasto) i segmentu (m.Segment) oraz oblicza liczbę unikalnych klientów (LiczbaKlientow) i liczbę sprzedanych samochodów (LiczbaSprzedanychSamochodow) dla każdej kombinacji miasto-segment. Dodatkowo, wykorzystuje funkcję CUBE w klauzuli GROUP BY, co pozwala na generowanie agregacji dla wszystkich możliwych kombinacji grupowania.
+    --Task competed in 0,349 seconds
+    --1002 rows
