@@ -1,1 +1,0 @@
-sqlldr CONTROL=czesci.ctl   skip=0   

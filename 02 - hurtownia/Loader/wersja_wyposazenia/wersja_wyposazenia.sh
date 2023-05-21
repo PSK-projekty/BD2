@@ -1,1 +1,0 @@
-sqlldr CONTROL=wersja_wyposazenia.ctl   skip=0   

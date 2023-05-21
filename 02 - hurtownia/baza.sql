@@ -91,7 +91,7 @@ CREATE TABLE Fakt_Sprzedaz (
     ID_Akcesorium NUMBER(10),
     ID_Naprawa NUMBER(10),
     ID_Adres NUMBER(10) NOT NULL,
-    DataSprzedazy DATE NOT NULL,
+    Data DATE NOT NULL,
     Kwota NUMBER(10,2) NOT NULL,
     PRIMARY KEY (ID_Sprzedaz)
 );

@@ -1,0 +1,1 @@
+sqlldr CONTROL=Wymiar_Klient.ctl   skip=0   

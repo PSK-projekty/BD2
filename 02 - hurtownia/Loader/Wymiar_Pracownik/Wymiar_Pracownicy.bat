@@ -1,0 +1,1 @@
+sqlldr CONTROL=Wymiar_Pracownicy.ctl   skip=0   

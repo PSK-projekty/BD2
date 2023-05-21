@@ -1,0 +1,1 @@
+sqlldr CONTROL=Wymiar_Samochod.ctl   skip=0   

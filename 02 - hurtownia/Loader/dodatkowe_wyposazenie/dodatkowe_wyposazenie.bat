@@ -1,1 +1,0 @@
-sqlldr CONTROL=dodatkowe_wyposazenie.ctl   skip=0   

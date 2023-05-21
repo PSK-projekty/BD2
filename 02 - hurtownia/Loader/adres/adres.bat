@@ -1,1 +1,0 @@
-sqlldr CONTROL=adres.ctl   skip=0   

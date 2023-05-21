@@ -1,1 +1,0 @@
-sqlldr CONTROL=model.ctl   skip=0   

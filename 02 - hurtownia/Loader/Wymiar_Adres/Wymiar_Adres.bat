@@ -1,0 +1,1 @@
+sqlldr CONTROL=Wymiar_Adres.ctl   skip=0   

@@ -1,1 +1,0 @@
-sqlldr CONTROL=silniki.ctl   skip=0   

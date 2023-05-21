@@ -1,1 +1,0 @@
-sqlldr CONTROL=akcesoria_samochod.ctl   skip=0   

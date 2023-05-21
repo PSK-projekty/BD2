@@ -1,0 +1,1 @@
+sqlldr CONTROL=Wymiar_Naprawa.ctl   skip=0   
