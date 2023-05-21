@@ -1,4 +1,5 @@
 DROP TABLE Fakt_Sprzedaz;
+DROP TABLE Wymiar_Akcesoria_Samochod;
 DROP TABLE Wymiar_Naprawa;
 DROP TABLE Wymiar_Pracownik;
 DROP TABLE Wymiar_Klient;
@@ -80,6 +81,13 @@ CREATE TABLE Wymiar_Naprawa (
     PRIMARY KEY (ID_Naprawa)
 );
 
+CREATE TABLE Wymiar_Akcesoria_Samochod (
+    ID_Akcesoria_Samochod NUMBER(10) NOT NULL,
+    ID_Samochod NUMBER(10), 
+    ID_Akcesorium NUMBER(10), 
+    PRIMARY KEY (ID_Akcesoria_Samochod)
+);
+
 CREATE TABLE Fakt_Sprzedaz (
     ID_Sprzedaz NUMBER(10) NOT NULL,
     ID_Samochod NUMBER(10),
@@ -91,6 +99,7 @@ CREATE TABLE Fakt_Sprzedaz (
     ID_Akcesorium NUMBER(10),
     ID_Naprawa NUMBER(10),
     ID_Adres NUMBER(10) NOT NULL,
+    ID_Akcesoria_Samochod NUMBER(10),
     Data DATE NOT NULL,
     Kwota NUMBER(10,2) NOT NULL,
     PRIMARY KEY (ID_Sprzedaz)
@@ -110,6 +119,9 @@ ALTER TABLE Wymiar_Pracownik ADD FOREIGN KEY (ID_Salon) REFERENCES Wymiar_Salon(
 
 ALTER TABLE Wymiar_Naprawa ADD FOREIGN KEY (ID_Samochod) REFERENCES Wymiar_Samochod(ID_Samochod);
 
+ALTER TABLE Wymiar_Akcesoria_Samochod ADD FOREIGN KEY (ID_Samochod) REFERENCES Wymiar_Samochod(ID_Samochod);
+ALTER TABLE Wymiar_Akcesoria_Samochod ADD FOREIGN KEY (ID_Akcesorium) REFERENCES Wymiar_Akcesoria(ID_Akcesorium);
+
 ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Samochod) REFERENCES Wymiar_Samochod(ID_Samochod);
 ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Model) REFERENCES Wymiar_Model(ID_Model);
 ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Klient) REFERENCES Wymiar_Klient(ID_Klient);
@@ -119,3 +131,4 @@ ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Salonu) REFERENCES Wymiar_Salon(ID
 ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Akcesorium) REFERENCES Wymiar_Akcesoria(ID_Akcesorium);
 ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Naprawa) REFERENCES Wymiar_Naprawa(ID_Naprawa);
 ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Adres) REFERENCES Wymiar_Adres(ID_Adres);
+ALTER TABLE Fakt_Sprzedaz ADD FOREIGN KEY (ID_Akcesoria_Samochod) REFERENCES Wymiar_Akcesoria_Samochod(ID_Akcesoria_Samochod);
