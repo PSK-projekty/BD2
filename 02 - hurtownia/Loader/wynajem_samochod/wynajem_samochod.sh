@@ -1,0 +1,1 @@
+sqlldr CONTROL=wynajem_samochod.ctl   skip=0   

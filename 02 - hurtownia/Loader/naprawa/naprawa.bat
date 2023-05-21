@@ -1,0 +1,1 @@
+sqlldr CONTROL=naprawa.ctl   skip=0   

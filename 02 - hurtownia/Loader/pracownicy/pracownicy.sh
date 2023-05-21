@@ -1,0 +1,1 @@
+sqlldr CONTROL=pracownicy.ctl   skip=0   

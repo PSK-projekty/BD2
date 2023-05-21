@@ -1,0 +1,1 @@
+sqlldr CONTROL=magazyn.ctl   skip=0   

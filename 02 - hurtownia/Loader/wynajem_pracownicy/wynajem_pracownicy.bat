@@ -1,0 +1,1 @@
+sqlldr CONTROL=wynajem_pracownicy.ctl   skip=0   
