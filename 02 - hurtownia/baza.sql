@@ -57,7 +57,7 @@ CREATE TABLE Wymiar_Samochod (
 CREATE TABLE Wymiar_Klient (
     ID_Klient NUMBER(10) NOT NULL,
     ID_Adres NUMBER(10) NOT NULL, 
-    IImie VARCHAR2(100) NOT NULL,
+    Imie VARCHAR2(100) NOT NULL,
     Nazwisko VARCHAR2(100) NOT NULL,
     PRIMARY KEY (ID_Klient)
 );

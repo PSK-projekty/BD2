@@ -1,7 +1,7 @@
 load data 
-infile '.\\Dane\\salon_samochodowy.csv' "str '\r\n'"
+infile '.\\Dane\\Wymiar_Salon.csv' "str '\r\n'"
 replace
-into table SALON_SAMOCHODOWY
+into table WYMIAR_SALON
 fields terminated by ','
 OPTIONALLY ENCLOSED BY '"' AND '"'
 trailing nullcols

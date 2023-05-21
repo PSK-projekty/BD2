@@ -7,6 +7,6 @@ OPTIONALLY ENCLOSED BY '"' AND '"'
 trailing nullcols
            ( ID_KLIENT,
              ID_ADRES,
-             IIMIE CHAR(100),
+             IMIE CHAR(100),
              NAZWISKO CHAR(100)
            )
