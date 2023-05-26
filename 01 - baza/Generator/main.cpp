@@ -641,6 +641,7 @@ void sprzedaz () {
 		int ID_Wynajem = ( random (1, 10) <= 7 ) ? random (1, 1000) : -1; // 70% szansa na NULL
 		int ID_Wersja = ( random (1, 10) <= 3 ) ? random (1, 100) : -1; // 30% szansa na NULL
 		int ID_Naprawa = ( random (1, 10) <= 5 ) ? random (1, 1000) : -1; // 50% szansa na NULL
+		int ID_Salon = random (1, 100);
 		struct tm Data = randomDate (2018, 1, 1, 2023, 12, 31);
 		float Kwota;
 
@@ -692,7 +693,7 @@ void sprzedaz () {
 			strcpy (ID_Naprawa_str, "");
 
 
-		fprintf (plik, "%d,%s,%s,%d,%d,%s,%s,%s,%s,%04d-%02d-%02d,%.2f\n", ID_Sprzedaz, ID_Samochod_str, ID_Akcesorium_str, ID_Pracownik, ID_Klient, ID_Czesc_str, ID_Wynajem_str, ID_Wersja_str, ID_Naprawa_str, Data.tm_year + 1900, Data.tm_mon + 1, Data.tm_mday, Kwota);
+		fprintf (plik, "%d,%s,%s,%d,%d,%s,%s,%s,%s,%d,%04d-%02d-%02d,%.2f\n", ID_Sprzedaz, ID_Samochod_str, ID_Akcesorium_str, ID_Pracownik, ID_Klient, ID_Czesc_str, ID_Wynajem_str, ID_Wersja_str, ID_Naprawa_str, ID_Salon, Data.tm_year + 1900, Data.tm_mon + 1, Data.tm_mday, Kwota);
 	}
 
 	fclose (plik);

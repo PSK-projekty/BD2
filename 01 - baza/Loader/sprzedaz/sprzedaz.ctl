@@ -14,6 +14,7 @@ trailing nullcols
              ID_WYNAJEM,
              ID_WERSJA,
              ID_NAPRAWA,
+             ID_SALON,
              DATA DATE "YYYY-MM-DD",
              KWOTA
            )

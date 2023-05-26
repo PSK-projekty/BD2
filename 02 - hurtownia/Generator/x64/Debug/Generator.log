@@ -1,4 +1,0 @@
-﻿  main.cpp
-F:\Semestr IV\Bazy danych 2\Projekt\02 - hurtownia\Generator\main.cpp(36,42): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-F:\Semestr IV\Bazy danych 2\Projekt\02 - hurtownia\Generator\main.cpp(315,14): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-  Generator.vcxproj -> F:\Semestr IV\Bazy danych 2\Projekt\02 - hurtownia\Generator\x64\Debug\Generator.exe

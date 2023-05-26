@@ -1,1 +1,0 @@
-sqlldr CONTROL=Wymiar_Stanowiska.ctl   skip=0   

@@ -1,100 +1,100 @@
-1,Model 1,8,sedan,C,4/5,8.49,2252
-2,Model 2,2,microvan,B,4/5,14.75,1928
-3,Model 3,4,pickup,A,2/3,8.31,1881
-4,Model 4,10,limousine,H,4/5,12.73,3192
-5,Model 5,9,limousine,F,4/5,12.06,1844
-6,Model 6,10,coupe,A,4/5,14.74,3274
-7,Model 7,1,roadster,J,2/3,9.85,2388
-8,Model 8,8,shooting brake,H,2/3,5.95,1274
-9,Model 9,11,fastback,J,4/5,11.76,2175
-10,Model 10,9,hatchback,A,2/3,14.50,2819
-11,Model 11,13,shooting brake,H,4/5,13.96,2847
-12,Model 12,4,microvan,B,2/3,9.49,2398
-13,Model 13,7,roadster,D,2/3,9.63,2668
-14,Model 14,3,coupe,J,2/3,9.68,1711
-15,Model 15,11,sedan,D,2/3,10.21,2544
-16,Model 16,1,liftback,C,2/3,13.97,3187
-17,Model 17,13,cabriolet,J,2/3,5.87,1006
-18,Model 18,3,cabriolet,J,4/5,10.70,2063
-19,Model 19,4,SUV,M,2/3,9.11,2472
-20,Model 20,11,limousine,M,2/3,12.92,2753
-21,Model 21,4,SUV,H,2/3,5.39,2848
-22,Model 22,7,cabriolet,E,4/5,8.92,1145
-23,Model 23,12,fastback,M,2/3,7.31,1368
-24,Model 24,1,minivan,B,2/3,6.40,2064
-25,Model 25,8,fastback,D,2/3,15.10,1243
-26,Model 26,11,pickup,C,4/5,7.07,1150
-27,Model 27,8,minivan,J,4/5,6.56,2939
-28,Model 28,11,shooting brake,S,4/5,5.84,1410
-29,Model 29,13,cabriolet,E,4/5,11.09,1528
-30,Model 30,5,estate,F,2/3,9.10,2928
-31,Model 31,9,SUV,F,2/3,13.05,1852
-32,Model 32,6,liftback,F,4/5,8.74,2075
-33,Model 33,8,fastback,B,2/3,12.07,1473
-34,Model 34,8,estate,F,4/5,11.25,2519
-35,Model 35,6,liftback,J,4/5,6.50,2006
-36,Model 36,12,fastback,C,4/5,6.21,1215
-37,Model 37,9,dual cowl,C,2/3,7.16,3028
-38,Model 38,1,shooting brake,B,2/3,15.46,3085
-39,Model 39,6,hatchback,F,2/3,5.08,3084
-40,Model 40,12,fastback,J,2/3,12.72,1086
-41,Model 41,13,estate,A,4/5,10.93,1293
-42,Model 42,7,roadster,F,2/3,12.57,1059
-43,Model 43,12,SUV,S,2/3,5.69,1327
-44,Model 44,6,estate,E,2/3,13.31,2274
-45,Model 45,12,hatchback,D,2/3,14.88,3266
-46,Model 46,5,cabriolet,D,4/5,8.92,2306
-47,Model 47,7,limousine,E,2/3,9.46,1493
-48,Model 48,13,minivan,M,2/3,6.48,1208
-49,Model 49,3,cabriolet,F,4/5,13.55,3194
-50,Model 50,9,cabriolet,D,2/3,12.16,3295
-51,Model 51,4,coupe,D,2/3,6.66,3276
-52,Model 52,3,sedan,B,4/5,6.44,1085
-53,Model 53,3,dual cowl,H,2/3,11.12,2601
-54,Model 54,4,estate,F,4/5,7.88,1568
-55,Model 55,12,shooting brake,S,4/5,15.36,1479
-56,Model 56,2,fastback,B,2/3,15.23,2200
-57,Model 57,6,hatchback,C,4/5,8.20,1292
-58,Model 58,9,limousine,J,2/3,11.17,2395
-59,Model 59,8,limousine,S,2/3,5.89,2992
-60,Model 60,6,shooting brake,M,4/5,6.55,1541
-61,Model 61,11,dual cowl,E,4/5,10.99,2011
-62,Model 62,5,limousine,E,4/5,14.33,1178
-63,Model 63,1,microvan,E,2/3,5.22,2943
-64,Model 64,11,microvan,F,4/5,5.50,2175
-65,Model 65,13,dual cowl,M,4/5,10.23,1069
-66,Model 66,13,cabriolet,J,2/3,9.49,2983
-67,Model 67,3,shooting brake,S,4/5,13.50,3053
-68,Model 68,4,pickup,M,2/3,12.02,2078
-69,Model 69,4,estate,S,2/3,14.01,1664
-70,Model 70,13,hatchback,F,4/5,12.55,3296
-71,Model 71,5,minivan,J,4/5,6.01,2155
-72,Model 72,5,coupe,D,2/3,9.78,3062
-73,Model 73,7,minivan,B,2/3,8.29,1834
-74,Model 74,12,sedan,D,4/5,14.87,1938
-75,Model 75,5,estate,J,4/5,9.92,2757
-76,Model 76,4,limousine,S,4/5,7.76,3279
-77,Model 77,9,targa,E,4/5,13.35,1612
-78,Model 78,10,SUV,M,2/3,9.83,2964
-79,Model 79,8,pickup,H,4/5,14.32,2210
-80,Model 80,13,SUV,J,2/3,9.73,1553
-81,Model 81,4,cabriolet,M,4/5,15.47,2023
-82,Model 82,12,SUV,H,2/3,10.16,1704
-83,Model 83,11,shooting brake,J,2/3,7.60,2310
-84,Model 84,12,dual cowl,E,4/5,5.96,2303
-85,Model 85,7,van,S,2/3,15.48,1469
-86,Model 86,13,SUV,B,4/5,14.13,3248
-87,Model 87,2,hatchback,D,2/3,5.63,2391
-88,Model 88,7,coupe,F,2/3,8.34,2027
-89,Model 89,10,roadster,F,2/3,5.04,2921
-90,Model 90,2,hatchback,A,2/3,14.98,2596
-91,Model 91,10,estate,E,4/5,7.71,2590
-92,Model 92,4,SUV,H,2/3,13.23,2411
-93,Model 93,5,microvan,D,2/3,7.36,2387
-94,Model 94,12,microvan,F,2/3,11.77,1107
-95,Model 95,1,cabriolet,J,2/3,6.44,1808
-96,Model 96,2,roadster,B,4/5,7.66,2885
-97,Model 97,7,fastback,J,2/3,14.10,1992
-98,Model 98,7,cabriolet,M,2/3,10.91,2302
-99,Model 99,3,roadster,B,2/3,9.28,1155
-100,Model 100,10,fastback,J,4/5,8.33,1041
+1,Model 1,4,dual cowl,D,2/3,12.06,1014
+2,Model 2,2,targa,H,4/5,12.48,2498
+3,Model 3,9,minivan,B,4/5,9.38,2034
+4,Model 4,13,microvan,F,2/3,5.95,1293
+5,Model 5,5,van,E,4/5,10.93,2817
+6,Model 6,13,limousine,S,4/5,14.00,3074
+7,Model 7,10,minivan,E,2/3,9.57,1083
+8,Model 8,4,hatchback,J,2/3,10.19,3279
+9,Model 9,2,coupe,D,2/3,15.40,2566
+10,Model 10,1,targa,S,2/3,7.79,1430
+11,Model 11,4,liftback,M,4/5,13.33,1353
+12,Model 12,4,SUV,D,4/5,7.86,3224
+13,Model 13,11,limousine,D,2/3,13.48,2649
+14,Model 14,10,minivan,F,4/5,12.60,1127
+15,Model 15,4,pickup,A,4/5,9.33,1612
+16,Model 16,10,microvan,M,2/3,5.15,1513
+17,Model 17,1,coupe,A,2/3,9.61,1492
+18,Model 18,6,fastback,C,4/5,12.34,1846
+19,Model 19,9,hatchback,B,4/5,11.41,1396
+20,Model 20,9,cabriolet,F,2/3,15.15,2131
+21,Model 21,11,van,J,4/5,7.05,2934
+22,Model 22,5,limousine,F,4/5,12.30,1643
+23,Model 23,6,minivan,A,4/5,7.55,2014
+24,Model 24,2,hatchback,D,4/5,12.33,1842
+25,Model 25,13,hatchback,M,2/3,7.40,2984
+26,Model 26,4,SUV,H,2/3,7.45,3087
+27,Model 27,6,fastback,D,2/3,9.86,2913
+28,Model 28,4,shooting brake,A,2/3,9.15,1440
+29,Model 29,12,pickup,S,2/3,6.07,2784
+30,Model 30,12,coupe,A,4/5,9.80,2445
+31,Model 31,13,SUV,F,4/5,6.11,2697
+32,Model 32,4,limousine,H,2/3,13.19,1289
+33,Model 33,6,pickup,B,2/3,15.39,1807
+34,Model 34,12,minivan,M,2/3,8.82,2734
+35,Model 35,1,shooting brake,J,4/5,12.39,2657
+36,Model 36,5,minivan,H,2/3,11.83,3081
+37,Model 37,6,minivan,E,2/3,10.28,2360
+38,Model 38,10,limousine,B,4/5,11.92,2702
+39,Model 39,4,targa,B,2/3,6.29,1072
+40,Model 40,6,dual cowl,B,2/3,5.56,1342
+41,Model 41,9,limousine,D,4/5,6.46,2872
+42,Model 42,8,estate,A,2/3,7.49,1712
+43,Model 43,2,shooting brake,B,2/3,13.64,2543
+44,Model 44,1,roadster,M,2/3,5.74,2753
+45,Model 45,7,fastback,C,2/3,8.73,3300
+46,Model 46,7,shooting brake,E,4/5,8.03,1134
+47,Model 47,12,liftback,J,4/5,12.79,1521
+48,Model 48,10,hatchback,H,2/3,7.54,2753
+49,Model 49,10,van,J,4/5,7.78,1758
+50,Model 50,11,roadster,F,2/3,5.27,1863
+51,Model 51,4,targa,M,4/5,13.57,2693
+52,Model 52,11,hatchback,A,2/3,11.39,2659
+53,Model 53,10,pickup,D,4/5,15.16,3039
+54,Model 54,7,limousine,E,4/5,5.47,2870
+55,Model 55,11,estate,F,2/3,6.12,1281
+56,Model 56,12,shooting brake,B,4/5,8.95,1996
+57,Model 57,7,limousine,C,2/3,10.17,2262
+58,Model 58,9,estate,B,4/5,8.16,2482
+59,Model 59,8,van,S,2/3,10.97,1861
+60,Model 60,2,SUV,J,4/5,7.25,1999
+61,Model 61,12,minivan,B,2/3,8.97,1499
+62,Model 62,8,targa,C,4/5,12.52,2097
+63,Model 63,5,pickup,S,2/3,9.54,2079
+64,Model 64,11,SUV,H,2/3,6.78,1529
+65,Model 65,12,coupe,H,4/5,14.08,2165
+66,Model 66,7,sedan,A,4/5,9.31,1935
+67,Model 67,12,dual cowl,A,4/5,7.32,3176
+68,Model 68,3,sedan,S,2/3,7.19,2886
+69,Model 69,9,cabriolet,C,4/5,12.64,1676
+70,Model 70,3,SUV,S,2/3,10.82,3190
+71,Model 71,12,limousine,C,2/3,9.02,1256
+72,Model 72,7,minivan,S,4/5,9.08,2288
+73,Model 73,10,roadster,B,2/3,12.51,1018
+74,Model 74,12,dual cowl,J,4/5,13.95,2212
+75,Model 75,1,targa,A,2/3,10.80,1400
+76,Model 76,3,minivan,S,4/5,11.84,1482
+77,Model 77,8,van,M,4/5,11.67,2053
+78,Model 78,7,van,F,2/3,11.79,2429
+79,Model 79,9,SUV,B,4/5,9.64,2763
+80,Model 80,12,pickup,J,2/3,7.48,1259
+81,Model 81,13,coupe,M,4/5,5.46,3125
+82,Model 82,8,minivan,F,4/5,11.82,1337
+83,Model 83,8,minivan,F,4/5,8.67,1284
+84,Model 84,13,shooting brake,H,2/3,12.63,2942
+85,Model 85,7,targa,C,2/3,11.04,2900
+86,Model 86,2,shooting brake,S,2/3,8.10,1498
+87,Model 87,8,minivan,H,4/5,8.09,1468
+88,Model 88,4,coupe,H,2/3,12.54,3014
+89,Model 89,4,hatchback,B,2/3,14.35,2965
+90,Model 90,2,sedan,B,2/3,12.62,2610
+91,Model 91,7,liftback,M,4/5,13.23,3079
+92,Model 92,7,dual cowl,E,2/3,6.16,1219
+93,Model 93,5,fastback,S,4/5,7.62,2647
+94,Model 94,10,roadster,B,2/3,9.10,3009
+95,Model 95,5,pickup,D,4/5,7.04,2712
+96,Model 96,3,minivan,F,2/3,5.25,1086
+97,Model 97,4,targa,A,2/3,12.48,1799
+98,Model 98,12,roadster,B,2/3,7.94,1133
+99,Model 99,10,minivan,J,4/5,13.26,3038
+100,Model 100,5,microvan,D,2/3,8.64,3126

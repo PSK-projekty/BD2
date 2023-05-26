@@ -1,1 +1,0 @@
-sqlldr CONTROL=Wymiar_Akcesoria.ctl   skip=0   

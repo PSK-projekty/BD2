@@ -237,6 +237,7 @@ CREATE TABLE Sprzedaz (
     ID_Wynajem NUMBER(10),
     ID_Wersja NUMBER(10),
     ID_Naprawa NUMBER(10),
+    ID_Salon NUMBER(10),
     Data DATE NOT NULL,
     Kwota NUMBER(10,2) NOT NULL,
     PRIMARY KEY (ID_Sprzedaz)
@@ -283,6 +284,7 @@ ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Akcesorium) REFERENCES Akcesoria(ID_Akc
 ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Czesc) REFERENCES Czesci(ID_Czesc);
 ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Naprawa) REFERENCES Naprawa(ID_Naprawa);
 ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Wynajem) REFERENCES Wynajem(ID_Wynajem);
+ALTER TABLE Sprzedaz ADD FOREIGN KEY (ID_Salon) REFERENCES Salon_Samochodowy(ID_Salonu);
 
 ALTER TABLE Magazyn ADD FOREIGN KEY (ID_Silnik) REFERENCES Silniki(ID_Silnik);
 ALTER TABLE Magazyn ADD FOREIGN KEY (ID_Akcesorium) REFERENCES Akcesoria(ID_Akcesorium);

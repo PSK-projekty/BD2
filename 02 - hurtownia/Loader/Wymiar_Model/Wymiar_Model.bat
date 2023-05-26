@@ -1,1 +1,0 @@
-sqlldr CONTROL=Wymiar_Model.ctl   skip=0   

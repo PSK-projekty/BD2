@@ -1,1 +1,0 @@
-sqlldr CONTROL=Fakt_Sprzedaz.ctl   skip=0   
