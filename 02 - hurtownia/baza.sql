@@ -32,6 +32,7 @@ CREATE TABLE Wymiar_Stanowisko (
 CREATE TABLE Wymiar_Akcesoria (
     ID_Akcesorium NUMBER(10) NOT NULL,
     Nazwa VARCHAR2(100) NOT NULL,
+    Cena NUMBER(6,2) NOT NULL,
     PRIMARY KEY (ID_Akcesorium)
 );
 
@@ -76,6 +77,7 @@ CREATE TABLE Wymiar_Naprawa (
     ID_Samochod NUMBER(10) NOT NULL, 
     Typ_naprawy VARCHAR2(15) NOT NULL,
     Data_przyjecia DATE NOT NULL,
+    Data_wydania DATE,
     Cena NUMBER(7,2),
     PRIMARY KEY (ID_Naprawa)
 );

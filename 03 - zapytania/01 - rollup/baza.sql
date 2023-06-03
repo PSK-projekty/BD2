@@ -7,8 +7,8 @@
     GROUP BY ROLLUP (s.RokProdukcji, s.Kolor, k.Imie, k.Nazwisko);
 
     --To zapytanie oblicza sumę sprzedaży samochodów z uwzględnieniem rocznika, koloru, klienta i ogólnej sumy sprzedaży dla każdej   kombinacji. Dzięki ROLLUP otrzymujemy również sumy częściowe dla poszczególnych poziomów hierarchii (rocznik, kolor, klient) oraz ogólną sumę sprzedaży dla wszystkich kombinacji. 
-    --Task competed in 2,777 seconds
-    --14103 rows
+    --Task competed in 3,312; 3,118; 3,04 seconds
+    --13997 rows
 
 --Zapytanie 2: Suma sprzedaży akcesoriów grupowana według typu akcesorium i klienta.
 
@@ -19,8 +19,8 @@
     GROUP BY ROLLUP (a.Nazwa, k.Imie, k.Nazwisko);
     
     --W tym zapytaniu agregujemy sumę sprzedaży akcesoriów według typu akcesorium i klienta. ROLLUP pozwala uzyskać sumy częściowe dla poszczególnych poziomów hierarchii oraz ogólną sumę sprzedaży dla wszystkich kombinacji.
-    --Task competed in 2,497 seconds
-    --14101 rows
+    --Task competed in 2,451; 2,626; 2,503 seconds
+    --14187rows
 
 --Zapytanie 3: Liczba sprzedanych samochodów w danym salonie w poszczególnych latach
 
@@ -31,5 +31,5 @@
     GROUP BY ROLLUP(Salon_Samochodowy.Nazwa, EXTRACT(YEAR FROM Sprzedaz.Data));
 
     --To zapytanie wykorzystuje tabelę Sprzedaz, Samochod i Salon_Samochodowy. ROLLUP jest używany do zsumowania liczby sprzedanych samochodów w danym salonie w poszczególnych latach. Wynik będzie zawierał sumy sprzedaży dla każdego salonu samochodowego w poszczególnych latach, a także ogólną sumę dla wszystkich salonów i lat.
-    --Task competed in 0,076 seconds
+    --Task competed in 0,1; 0,83; 0,87 seconds
     --701 rows

@@ -26,8 +26,8 @@ BEGIN
   SELECT ID_Stanowiska, Nazwa
   FROM Stanowiska;
 
-  INSERT INTO Wymiar_Akcesoria (ID_Akcesorium, Nazwa)
-  SELECT ID_Akcesorium, Nazwa
+  INSERT INTO Wymiar_Akcesoria (ID_Akcesorium, Nazwa, Cena)
+  SELECT ID_Akcesorium, Nazwa, Cena
   FROM Akcesoria;
 
   INSERT INTO Wymiar_Salon (ID_Salonu, ID_Adres, Nazwa)
@@ -46,8 +46,8 @@ BEGIN
   SELECT ID_Pracownik, ID_Stanowisko, ID_Salon, Imie, Nazwisko
   FROM Pracownicy;
 
-  INSERT INTO Wymiar_Naprawa (ID_Naprawa, ID_Samochod, Typ_naprawy, Data_przyjecia, Cena)
-  SELECT ID_Naprawa, ID_Samochod, Typ_naprawy, Data_przyjecia, Cena
+  INSERT INTO Wymiar_Naprawa (ID_Naprawa, ID_Samochod, Typ_naprawy, Data_przyjecia, Data_wydania ,Cena)
+  SELECT ID_Naprawa, ID_Samochod, Typ_naprawy, Data_przyjecia, Data_wydania, Cena
   FROM Naprawa;
 
   INSERT INTO Wymiar_Akcesoria_Samochod (ID_Akcesoria_Samochod, ID_Samochod, ID_Akcesorium)

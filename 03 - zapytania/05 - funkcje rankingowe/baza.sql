@@ -14,7 +14,7 @@
     WHERE rank <= 10;
 
     --To zapytanie generuje ranking sprzedaży dla salonów samochodowych, przydzielając numer porządkowy na podstawie liczby sprzedanych samochodów. Następnie wybiera tylko te rekordy, które mają ranking mniejszy lub równy 10.
-    --Task competed in 0,122 seconds
+    --Task competed in 0,149; 0,16; 0,152 seconds
     --859 rows
 
 --Zapytanie 2: Zapytanie do wyznaczenia najlepszych pracowników na podstawie sprzedaży samochodów.
@@ -38,8 +38,8 @@
     WHERE rank = 1;
 
     --To zapytanie identyfikuje pracowników, którzy osiągnęli najwyższą sumę sprzedaży w poszczególnych salonach samochodowych. Wykorzystuje operację okna RANK w celu przypisania rankingu pracownikom w ramach każdego salonu na podstawie sumy sprzedaży. Następnie zwraca rekordy pracowników, którzy zajmują pierwsze miejsce w rankingu dla każdego salonu samochodowego.
-    --Task competed in 0,046 seconds
-    --87 rows
+    --Task competed in 0,043; 0,039; 0,036 seconds
+    --83 rows
 
 --Zapytanie 3: Zapytanie do obliczenia sumy sprzedaży akcesoriów dla danego samochodu.
 
@@ -57,5 +57,5 @@
     WHERE rank <= 20;
 
     --To zapytanie analizuje sprzedaż akcesoriów samochodowych i identyfikuje 20 najlepiej sprzedających się akcesoriów. Wykorzystuje funkcję okna DENSE_RANK, aby przyporządkować ranking każdemu akcesorium na podstawie sumy sprzedaży. Dodatkowo, zapytanie wykorzystuje klauzulę WITH do utworzenia tymczasowej tabeli ranked_accessories, która zawiera informacje o identyfikatorze samochodu, numerze VIN, sumie sprzedaży akcesoriów oraz przypisanym rankingu.
-    --Task competed in 0,055 seconds
+    --Task competed in 0,061; 0,06; 0,053  seconds
     --20 rows

@@ -10,7 +10,7 @@
     GROUP BY M.Nazwa;
 
     --To zapytanie oblicza średnią cenę akcesoriów dla różnych modeli samochodów. Działa na podstawie danych sprzedażowych z ostatnich 60 dni. Zapytanie łączy kilka tabel, aby uzyskać wymagane informacje. Wyniki są grupowane według nazwy modelu samochodu.
-    --Task competed in 0,061 seconds
+    --Task competed in 0,07; 0,068; 0,067 seconds
     --100 rows
 
 --Zapytanie 2: Zapytanie sumujące wartość sprzedaży samochodów dla każdego klienta z ostatniego roku.
@@ -23,8 +23,8 @@
     GROUP BY K.ID_Klient, K.Imie, K.Nazwisko;
 
     --To zapytanie wylicza sumę sprzedaży samochodów dla każdego klienta, uwzględniając warunek, że sprzedaż odbyła się w ciągu ostatnich 360 dni i samochód został sprzedany (ID samochodu nie jest puste). Wyniki grupowane są według ID klienta, Imienia i Nazwiska, a suma sprzedaży samochodów przypisana jest do kolumny "Suma_sprzedazy_samochodow".
-    --Task competed in 0,108 seconds
-    --882 rows
+    --Task competed in 0,131; 0,129; 0,131 seconds
+    --851 rows
 
 --Zapytanie 3: Zapytanie obliczające średnią cenę naprawy dla każdego typu naprawy w okresie ostatniego roku.
 
@@ -36,5 +36,5 @@
     GROUP BY N.Typ_naprawy;
 
     --To zapytanie oblicza średnią cenę napraw dla różnych typów napraw w ostatnim roku dla każdego typu naprawy. Wykorzystuje operację GROUP BY, aby grupować wyniki według kolumny Typ_naprawy i następnie obliczyć średnią cenę dla każdej grupy. W rezultacie otrzymujemy wyniki, które zawierają kolumny Typ_naprawy i Srednia_cena_naprawy, które przedstawiają typ naprawy oraz odpowiadającą mu średnią cenę naprawy dla tego typu naprawy w ciągu ostatniego roku.
-    --Task competed in 0,036 seconds
+    --Task competed in 0,065; 0,068; 0,077 seconds
     --20 rows

@@ -7,8 +7,8 @@
     GROUP BY CUBE (Segment, RokProdukcji, Naped);
 
     --To zapytanie generuje zestawienie, w którym dla każdej kombinacji segmentu, roku produkcji i typu napędu podaje liczbę sprzedanych samochodów. Dzięki użyciu operatora CUBE, wynik zawiera również sumy częściowe dla poszczególnych poziomów grupowania, np. sumę sprzedaży dla konkretnego segmentu niezależnie od roku produkcji i napędu.
-    --Task competed in 0,053 seconds
-    --348 rows
+    --Task competed in 0,061; 0,066; 0,061 seconds
+    --346 rows
 
 --Zapytanie 2: Naprawy samochodów, grupowane według typu naprawy, statusu naprawy i roku przyjęcia.
 
@@ -25,8 +25,8 @@
     GROUP BY CUBE (n.Typ_naprawy, CASE WHEN n.Data_wydania IS NULL THEN 'W naprawie' ELSE 'Zakończona' END, EXTRACT(YEAR FROM n.Data_przyjecia));
 
     --To zapytanie analizuje dane dotyczące napraw samochodowych i oblicza liczbę napraw dla różnych kategorii, takich jak typ naprawy, status naprawy (w naprawie lub zakończona) oraz rok przyjęcia naprawy. Wykorzystuje operację GROUP BY CUBE, która generuje wyniki dla wszystkich kombinacji wartości wskazanych kolumn.
-    --Task competed in 0,338 seconds
-    --377 rows
+    --Task competed in 0,06; 0,063; 0,058 seconds
+    --373 rows
 
 --Zapytanie 3: Liczba klientów i sprzedanych samochodów według miasta i segmentu.
 
@@ -40,5 +40,5 @@
     ORDER BY a.Miasto, m.Segment;
 
     --To zapytanie grupuje dane ze sprzedaży samochodów na podstawie miasta (a.Miasto) i segmentu (m.Segment) oraz oblicza liczbę unikalnych klientów (LiczbaKlientow) i liczbę sprzedanych samochodów (LiczbaSprzedanychSamochodow) dla każdej kombinacji miasto-segment. Dodatkowo, wykorzystuje funkcję CUBE w klauzuli GROUP BY, co pozwala na generowanie agregacji dla wszystkich możliwych kombinacji grupowania.
-    --Task competed in 0,349 seconds
-    --1002 rows
+    --Task competed in 0,225; 0,216; 0,221 seconds
+    --1026 rows
