@@ -1,6 +1,6 @@
 @echo off
-set "user=c##DB2
-set "pass=toor"
+set "user=c##DB2"
+set "pass=toor" 
 set "instance=xe"
 
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\adres\adres.ctl
