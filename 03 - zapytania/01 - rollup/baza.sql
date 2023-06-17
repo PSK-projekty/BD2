@@ -1,35 +1,41 @@
---Zapytanie 1: Suma sprzedaży samochodów według roku produkcji, koloru i klienta.
+--Zapytanie 1: Suma cen akcesoriów sprzedanych przez pracowników w poszczególnych salonach samochodowych.
 
-    SELECT s.RokProdukcji, s.Kolor, k.Imie, k.Nazwisko, SUM(spr.Kwota) AS SumaSprzedazy
-    FROM Sprzedaz spr
-    JOIN Samochod s ON spr.ID_Samochod = s.ID_Samochodu
-    JOIN Klient k ON spr.ID_Klient = k.ID_Klient
-    GROUP BY ROLLUP (s.RokProdukcji, s.Kolor, k.Imie, k.Nazwisko);
+    SELECT Salon_Samochodowy.Nazwa, Pracownicy.Imie, Pracownicy.Nazwisko, SUM(Akcesoria.Cena) AS SumaCenAkcesoriow
+    FROM Salon_Samochodowy
+    JOIN Pracownicy ON Salon_Samochodowy.ID_Salonu = Pracownicy.ID_Salon
+    JOIN Sprzedaz ON Pracownicy.ID_Pracownik = Sprzedaz.ID_Pracownik
+    JOIN Akcesoria ON Sprzedaz.ID_Akcesorium = Akcesoria.ID_Akcesorium
+    GROUP BY ROLLUP (Salon_Samochodowy.Nazwa, Pracownicy.Imie, Pracownicy.Nazwisko);
 
-    --To zapytanie oblicza sumę sprzedaży samochodów z uwzględnieniem rocznika, koloru, klienta i ogólnej sumy sprzedaży dla każdej   kombinacji. Dzięki ROLLUP otrzymujemy również sumy częściowe dla poszczególnych poziomów hierarchii (rocznik, kolor, klient) oraz ogólną sumę sprzedaży dla wszystkich kombinacji. 
-    --Task competed in 3,312; 3,118; 3,04 seconds
-    --13997 rows
+    --Task competed in 0,064; 0,071; 0,068 seconds
+    --487 rows
 
---Zapytanie 2: Suma sprzedaży akcesoriów grupowana według typu akcesorium i klienta.
+--Zapytanie 2: Średnia ceny części zamówionych przez klientów w różnych miastach.
 
-    SELECT a.Nazwa, k.Imie, k.Nazwisko, SUM(spr.Kwota) AS SumaSprzedazy
-    FROM Sprzedaz spr
-    JOIN Akcesoria a ON spr.ID_Akcesorium = a.ID_Akcesorium
-    JOIN Klient k ON spr.ID_Klient = k.ID_Klient
-    GROUP BY ROLLUP (a.Nazwa, k.Imie, k.Nazwisko);
-    
-    --W tym zapytaniu agregujemy sumę sprzedaży akcesoriów według typu akcesorium i klienta. ROLLUP pozwala uzyskać sumy częściowe dla poszczególnych poziomów hierarchii oraz ogólną sumę sprzedaży dla wszystkich kombinacji.
-    --Task competed in 2,451; 2,626; 2,503 seconds
-    --14187rows
+    SELECT Miasto_slownik.Nazwa_miasta, Klient.Imie, Klient.Nazwisko, AVG(Czesci.Cena) AS SredniaCenaCzesci
+    FROM Miasto_slownik
+    JOIN Ulica_slownik ON Miasto_slownik.ID_Miasto = Ulica_slownik.ID_Miasto
+    JOIN Adres ON Ulica_slownik.ID_Ulica = Adres.ID_Ulica
+    JOIN Klient ON Adres.ID_Adres = Klient.ID_Adres
+    JOIN Sprzedaz ON Klient.ID_Klient = Sprzedaz.ID_Klient
+    JOIN Czesci ON Sprzedaz.ID_Czesc = Czesci.ID_Czesc
+    GROUP BY ROLLUP (Miasto_slownik.Nazwa_miasta, Klient.Imie, Klient.Nazwisko);
 
---Zapytanie 3: Liczba sprzedanych samochodów w danym salonie w poszczególnych latach
+    --Task competed in 0,272; 0,251; 0,254 seconds
+    --2087 rows
 
-    SELECT Salon_Samochodowy.Nazwa, EXTRACT(YEAR FROM Sprzedaz.Data) AS Rok, COUNT(*) AS LiczbaSprzedanych
-    FROM Sprzedaz
-    JOIN Samochod ON Sprzedaz.ID_Samochod = Samochod.ID_Samochodu
-    JOIN Salon_Samochodowy ON Samochod.ID_Salonu = Salon_Samochodowy.ID_Salonu
-    GROUP BY ROLLUP(Salon_Samochodowy.Nazwa, EXTRACT(YEAR FROM Sprzedaz.Data));
+--Zapytanie 3: Suma cen zamówionych części przez klientów w poszczególnych miastach i salonach samochodowych.
 
-    --To zapytanie wykorzystuje tabelę Sprzedaz, Samochod i Salon_Samochodowy. ROLLUP jest używany do zsumowania liczby sprzedanych samochodów w danym salonie w poszczególnych latach. Wynik będzie zawierał sumy sprzedaży dla każdego salonu samochodowego w poszczególnych latach, a także ogólną sumę dla wszystkich salonów i lat.
-    --Task competed in 0,1; 0,83; 0,87 seconds
-    --701 rows
+    SELECT Miasto_slownik.Nazwa_miasta, Salon_Samochodowy.Nazwa, Klient.Imie, Klient.Nazwisko, SUM(Czesci.Cena) AS SumaCenCzesci
+    FROM Miasto_slownik
+    JOIN Ulica_slownik ON Miasto_slownik.ID_Miasto = Ulica_slownik.ID_Miasto
+    JOIN Adres ON Ulica_slownik.ID_Ulica = Adres.ID_Ulica
+    JOIN Klient ON Adres.ID_Adres = Klient.ID_Adres
+    JOIN Sprzedaz ON Klient.ID_Klient = Sprzedaz.ID_Klient
+    JOIN Czesci ON Sprzedaz.ID_Czesc = Czesci.ID_Czesc
+    JOIN Salon_Samochodowy ON Sprzedaz.ID_Salon = Salon_Samochodowy.ID_Salonu
+    GROUP BY ROLLUP (Miasto_slownik.Nazwa_miasta, Salon_Samochodowy.Nazwa, Klient.Imie, Klient.Nazwisko);
+
+
+    --Task competed in 3,133; 2,99; 3,048 seconds
+    --13665 rows

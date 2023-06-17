@@ -1,40 +1,35 @@
---Zapytanie 1: Zapytanie obliczające średnią cenę akcesoriów dla każdego modelu samochodu w okresie ostatnich 60 dni.
+--Zapytanie 1: Suma cen akcesoriów sprzedanych przez każdego pracownika w oknie czasowym dla danego salonu samochodowego.
 
-    SELECT M.Nazwa AS Model, AVG(A.Cena) AS Srednia_cena_akcesoriow
-    FROM Sprzedaz S
-    JOIN Samochod SA ON S.ID_Samochod = SA.ID_Samochodu
-    JOIN Model M ON SA.ID_Model = M.ID_Model
-    JOIN Akcesoria_Samochod ASAM ON SA.ID_Samochodu = ASAM.ID_Samochod
-    JOIN Akcesoria A ON ASAM.ID_Akcesoria = A.ID_Akcesorium
-    WHERE S.Data >= TRUNC(SYSDATE) - 60
-    GROUP BY M.Nazwa;
+    SELECT p.ID_Pracownik, s.ID_Salonu, s.Nazwa, SUM(sp.Kwota) AS SumaCenAkcesoriow
+    FROM Sprzedaz sp
+    JOIN Pracownicy p ON sp.ID_Pracownik = p.ID_Pracownik
+    JOIN Salon_Samochodowy s ON p.ID_Salon = s.ID_Salonu
+    WHERE sp.Data BETWEEN TO_DATE('2023-01-01', 'YYYY-MM-DD') AND TO_DATE('2023-12-31', 'YYYY-MM-DD')
+    GROUP BY p.ID_Pracownik, s.ID_Salonu, s.Nazwa;
 
-    --To zapytanie oblicza średnią cenę akcesoriów dla różnych modeli samochodów. Działa na podstawie danych sprzedażowych z ostatnich 60 dni. Zapytanie łączy kilka tabel, aby uzyskać wymagane informacje. Wyniki są grupowane według nazwy modelu samochodu.
-    --Task competed in 0,07; 0,068; 0,067 seconds
-    --100 rows
+    --Task competed in 0,044; 0,04; 0,043 seconds
+    --200 rows
 
---Zapytanie 2: Zapytanie sumujące wartość sprzedaży samochodów dla każdego klienta z ostatniego roku.
+--Zapytanie 2: Średnia liczba wynajmów samochodów w oknie czasowym dla każdego klienta w danym mieście.
 
-    SELECT K.ID_Klient, K.Imie, K.Nazwisko, SUM(S.Kwota) AS Suma_sprzedazy_samochodow
-    FROM Sprzedaz S
-    JOIN Klient K ON S.ID_Klient = K.ID_Klient
-    JOIN Samochod SA ON S.ID_Samochod = SA.ID_Samochodu
-    WHERE S.Data >= TRUNC(SYSDATE) - 360 AND s.id_samochod IS NOT NULL
-    GROUP BY K.ID_Klient, K.Imie, K.Nazwisko;
+    SELECT k.ID_Klient, a.ID_Adres, m.Nazwa_miasta, AVG(w.ID_Wynajem) AS SredniaLiczbaWynajmow
+    FROM Wynajem w
+    JOIN Klient k ON w.ID_Klient = k.ID_Klient
+    JOIN Adres a ON k.ID_Adres = a.ID_Adres
+    JOIN Miasto_slownik m ON a.ID_Adres = m.ID_Miasto
+    WHERE w.Data_wynajmu BETWEEN TO_DATE('2023-01-01', 'YYYY-MM-DD') AND TO_DATE('2023-12-31', 'YYYY-MM-DD')
+    GROUP BY k.ID_Klient, a.ID_Adres, m.Nazwa_miasta;
 
-    --To zapytanie wylicza sumę sprzedaży samochodów dla każdego klienta, uwzględniając warunek, że sprzedaż odbyła się w ciągu ostatnich 360 dni i samochód został sprzedany (ID samochodu nie jest puste). Wyniki grupowane są według ID klienta, Imienia i Nazwiska, a suma sprzedaży samochodów przypisana jest do kolumny "Suma_sprzedazy_samochodow".
-    --Task competed in 0,131; 0,129; 0,131 seconds
-    --851 rows
+    --Task competed in 0,045; 0,042; 0,04 seconds
+    --79 rows
 
---Zapytanie 3: Zapytanie obliczające średnią cenę naprawy dla każdego typu naprawy w okresie ostatniego roku.
+--Zapytanie 3: Suma cen sprzedaży części w oknie czasowym dla każdego klienta z uwzględnieniem pracownika.
 
-    SELECT N.Typ_naprawy, AVG(N.Cena) AS Srednia_cena_naprawy
-    FROM Naprawa N
-    JOIN Samochod S ON N.ID_Samochod = S.ID_Samochodu
-    JOIN Pracownicy P ON N.ID_Pracownika = P.ID_Pracownik
-    WHERE N.Data_przyjecia >= TRUNC(SYSDATE, 'YEAR') - INTERVAL '1' YEAR
-    GROUP BY N.Typ_naprawy;
-
-    --To zapytanie oblicza średnią cenę napraw dla różnych typów napraw w ostatnim roku dla każdego typu naprawy. Wykorzystuje operację GROUP BY, aby grupować wyniki według kolumny Typ_naprawy i następnie obliczyć średnią cenę dla każdej grupy. W rezultacie otrzymujemy wyniki, które zawierają kolumny Typ_naprawy i Srednia_cena_naprawy, które przedstawiają typ naprawy oraz odpowiadającą mu średnią cenę naprawy dla tego typu naprawy w ciągu ostatniego roku.
-    --Task competed in 0,065; 0,068; 0,077 seconds
-    --20 rows
+    SELECT s.Data, k.ID_Klient, p.Imie, p.Nazwisko, SUM(s.Kwota) OVER (PARTITION BY k.ID_Klient, p.ID_Pracownik ORDER BY s.Data) AS SumaCenSprzedazy
+    FROM Sprzedaz s
+    JOIN Klient k ON s.ID_Klient = k.ID_Klient
+    JOIN Pracownicy p ON s.ID_Pracownik = p.ID_Pracownik
+    WHERE s.Data BETWEEN TO_DATE('2023-01-01', 'YYYY-MM-DD') AND TO_DATE('2023-12-31', 'YYYY-MM-DD');
+    
+    --Task competed in 0,24; 0,252; 0,236 seconds
+    --1648 rows

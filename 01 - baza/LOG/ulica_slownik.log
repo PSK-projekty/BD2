@@ -1,0 +1,37 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Sat Jun 17 16:16:35 2023
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Loader\ulica_slownik\ulica_slownik.ctl
+Data File:      .\\Dane\\ulica_slownik.csv
+  File processing option string: "str '\r\n'"
+  Bad File:     Loader\ulica_slownik\ulica_slownik.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table ULICA_SLOWNIK, loaded from every logical record.
+Insert option in effect for this table: REPLACE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+ID_ULICA                            FIRST     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_MIASTO                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+NAZWA_ULICY                          NEXT   100   ,  O(") CHARACTER            
+                                                      O(")
+
+SQL*Loader-926: OCI error while executing delete/truncate (due to REPLACE/TRUNCATE keyword) for table ULICA_SLOWNIK
+ORA-02292: integrity constraint (C##DB2.SYS_C0019366) violated - child record found
+

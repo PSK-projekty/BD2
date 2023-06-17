@@ -83,38 +83,54 @@ void adres () {
 
 	for( int i = 1; i <= 1000; i++ ) {
 		int ID_Adres = i;
-		char Miasto[100];
-		char Miejscowosc[100];
-		if( i % 2 == 0 ) {
-			sprintf (Miasto, "Miasto %d", i);
-			Miejscowosc[0] = '\0';
-		}
-		else {
-			sprintf (Miasto, "");
-			sprintf (Miejscowosc, "Miejscowosc %d", i);
-		}
+		int ID_Ulica = i;
 		char NumerDomu[4];
 		sprintf (NumerDomu, "%d", random (1, 100));
 		char NumerMieszkania[4] = "";
-		if( Miejscowosc[0] != '\0' ) {
-			sprintf (NumerMieszkania, "%d", random (1, 100));
-		}
-		char KodPocztowy[8];
-		sprintf (KodPocztowy, "%02d-%03d", random (1, 99), random (1, 999));
-		char Ulica[100];
-		if( Miasto[0] != '\0' ) {
-			sprintf (Ulica, "Ulica %d", random (1, 100));
-		}
-		else if( Miejscowosc[0] != '\0' && Miejscowosc[i] % 2 == 0 ) {
-			sprintf (Ulica, "Ulica %d", random (1, 100));
-		}
-		else {
-			Ulica[0] = '\0';
-		}
-
-		fprintf (plik, "%d,%s,%s,%s,%s,%s,%s\n", ID_Adres, Miasto, Miejscowosc, NumerDomu, NumerMieszkania, KodPocztowy, Ulica);
+		if( random (1, 10) > 7 )
+			sprintf (NumerMieszkania, "%d", random (1, 30));
+		
+		fprintf (plik, "%d,%d,%s,%s\n", ID_Adres, ID_Ulica, NumerDomu, NumerMieszkania);
 	}
 
+	fclose (plik);
+}
+
+void ulica_slownik () {
+	FILE* plik = fopen ("../Dane/ulica_slownik.csv", "w");
+
+	if( plik == NULL ) {
+		printf ("Failed to open file ulica_slownik.csv\n");
+		return;
+	}
+
+	for( int i = 1; i <= 300; i++ ) {
+		int ID_Ulica = i;
+		int ID_Miasto = random (1, 100);
+		char Nazwa_ulicy[100];
+		sprintf (Nazwa_ulicy, "Ulica %d", i);
+
+		fprintf (plik, "%d,%d,%s\n", ID_Ulica, ID_Miasto, Nazwa_ulicy);
+	}
+
+	fclose (plik);
+}
+
+void miasto_slownik () {
+	FILE* plik = fopen ("../Dane/miasto_slownik.csv", "w");
+
+	if( plik == NULL ) {
+		printf ("Failed to open file ulica_slownik.csv\n");
+		return;
+	}
+
+	for( int i = 1; i <= 100; i++ ) {
+		int ID_Ulica = i;
+		char Nazwa_miasta[100];
+		sprintf (Nazwa_miasta, "Miasto %d", i);
+
+		fprintf (plik, "%d,%s\n", ID_Ulica, Nazwa_miasta);
+	}
 
 	fclose (plik);
 }
@@ -531,6 +547,9 @@ void wynajem () {
 
 	for( i = 1; i <= 1000; i++ ) {
 		int ID_Wynajem = i;
+		int ID_Klient = random (1, 1000);
+		int ID_Samochod = random (1, 1000);
+		int ID_Pracownik = random (1, 100);
 		struct tm DataWynajmu = randomDate (2018, 1, 1, 2023, 12, 31);
 		struct tm DataZwrotu = randomDate (DataWynajmu.tm_year + 1900, DataWynajmu.tm_mon + 1, DataWynajmu.tm_mday, 2023, 12, 31);
 		float Cena;
@@ -560,64 +579,7 @@ void wynajem () {
 			snprintf (DataZwrotuStr, sizeof (DataZwrotuStr), "%04d-%02d-%02d", DataZwrotu.tm_year + 1900, DataZwrotu.tm_mon + 1, DataZwrotu.tm_mday);
 		}
 
-		fprintf (plik, "%d,%04d-%02d-%02d,%s,%.2f\n", ID_Wynajem, DataWynajmu.tm_year + 1900, DataWynajmu.tm_mon + 1, DataWynajmu.tm_mday, DataZwrotuStr, Cena);
-	}
-
-	fclose (plik);
-}
-
-void wynajem_pracownicy () {
-	FILE* plik = fopen ("../Dane/wynajem_pracownicy.csv", "w");
-
-	if( plik == NULL ) {
-		printf ("Failed to open file wynajem_pracownicy.csv\n");
-		return;
-	}
-
-	for( i = 1; i <= 10000; i++ ) {
-		int ID_wynajem_pracownicy = i;
-		int ID_Wynajem = random (1, 1000);
-		int ID_Pracownik = random (1, 100);
-
-		fprintf (plik, "%d,%d,%d\n", ID_wynajem_pracownicy, ID_Wynajem, ID_Pracownik);
-	}
-
-	fclose (plik);
-}
-
-void wynajem_klient () {
-	FILE* plik = fopen ("../Dane/wynajem_klient.csv", "w");
-
-	if( plik == NULL ) {
-		printf ("Failed to open file wynajem_klient.csv\n");
-		return;
-	}
-
-	for( i = 1; i <= 10000; i++ ) {
-		int ID_Wynajem_Klient = i;
-		int ID_Wynajem = random (1, 1000);
-		int ID_Klient = random (1, 1000);
-
-		fprintf (plik, "%d,%d,%d\n", ID_Wynajem_Klient, ID_Wynajem, ID_Klient);
-	}
-
-	fclose (plik);
-}
-
-void wynajem_samochod () {
-	FILE* plik = fopen ("../Dane/wynajem_samochod.csv", "w");
-
-	if( plik == NULL ) {
-		printf ("Failed to open file wynajem_samochod.csv\n");
-		return;
-	}
-
-	for( i = 1; i <= 10000; i++ ) {
-		int ID_Wynajem_Samochod = i;
-		int ID_Wynajem = random (1, 1000);
-		int ID_Samochod = random (1, 1000);
-
-		fprintf (plik, "%d,%d,%d\n", ID_Wynajem_Samochod, ID_Wynajem, ID_Samochod);
+		fprintf (plik, "%d,%d,%d,%d,%04d-%02d-%02d,%s,%.2f\n", ID_Wynajem, ID_Klient, ID_Samochod, ID_Pracownik, DataWynajmu.tm_year + 1900, DataWynajmu.tm_mon + 1, DataWynajmu.tm_mday, DataZwrotuStr, Cena);
 	}
 
 	fclose (plik);
@@ -725,6 +687,8 @@ int main () {
 	srand (time (NULL));
 
 	adres ();
+	ulica_slownik ();
+	miasto_slownik ();
 	akcesoria ();
 	model ();
 	silniki ();
@@ -743,9 +707,6 @@ int main () {
 	dodatkowe_samochod ();
 	akcesoria_samochod ();
 	wynajem ();
-	wynajem_pracownicy ();
-	wynajem_klient ();
-	wynajem_samochod ();
 	sprzedaz ();
 	platnosc ();
 

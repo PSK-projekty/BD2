@@ -5,6 +5,8 @@ DROP TABLE Silniki CASCADE CONSTRAINTS;
 DROP TABLE Pracownicy CASCADE CONSTRAINTS;
 DROP TABLE Klient CASCADE CONSTRAINTS;
 DROP TABLE Adres CASCADE CONSTRAINTS;
+DROP TABLE Miasto_slownik CASCADE CONSTRAINTS;
+DROP TABLE Ulica_slownik CASCADE CONSTRAINTS;
 DROP TABLE Naprawa CASCADE CONSTRAINTS;
 DROP TABLE Jazda_Probna CASCADE CONSTRAINTS;
 DROP TABLE Platnosc CASCADE CONSTRAINTS;
@@ -16,22 +18,29 @@ DROP TABLE Wynajem CASCADE CONSTRAINTS;
 DROP TABLE Czesci CASCADE CONSTRAINTS;
 DROP TABLE Dodatkowe_Wyposazenie CASCADE CONSTRAINTS;
 DROP TABLE Magazyn CASCADE CONSTRAINTS;
-DROP TABLE Wynajem_Pracownicy CASCADE CONSTRAINTS;
-DROP TABLE Wynajem_Klient CASCADE CONSTRAINTS;
 DROP TABLE Czesci_Samochod CASCADE CONSTRAINTS;
-DROP TABLE Wynajem_Samochod CASCADE CONSTRAINTS;
 DROP TABLE Akcesoria_Samochod CASCADE CONSTRAINTS;
 DROP TABLE Dodatkowe_Samochod CASCADE CONSTRAINTS;
 
 CREATE TABLE Adres (
     ID_Adres NUMBER(10) NOT NULL,
-    Miasto VARCHAR2(100),
-    Miejscowosc VARCHAR2(100),
+    ID_Ulica NUMBER(10) NOT NULL,
     Numer_domu VARCHAR2(3),
     Numer_mieszkania VARCHAR2(3),
-    Kod_pocztowy VARCHAR2(10) NOT NULL,
-    Ulica VARCHAR2(100),
-    PRIMARY KEY (ID_Adres)
+    PRIMARY KEY (ID_Adres) 
+);
+
+CREATE TABLE Miasto_slownik (
+    ID_Miasto NUMBER(10) NOT NULL,
+    Nazwa_miasta VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID_Miasto)
+);
+
+CREATE TABLE Ulica_slownik (
+    ID_Ulica NUMBER(10) NOT NULL,
+    ID_Miasto NUMBER(10) NOT NULL,
+    Nazwa_ulicy VARCHAR(100) NOT NULL,
+    PRIMARY KEY (ID_Ulica)
 );
 
 CREATE TABLE Akcesoria (
@@ -200,31 +209,13 @@ CREATE TABLE Akcesoria_Samochod (
 
 CREATE TABLE Wynajem (
     ID_Wynajem NUMBER(10) NOT NULL,
+    ID_Klient NUMBER(10) NOT NULL,
+    ID_Samochod NUMBER(10) NOT NULL,
+    ID_Pracownik NUMBER(10) NOT NULL,
     Data_wynajmu DATE NOT NULL,
     Data_zwrotu DATE,
     Cena NUMBER(7,2) NOT NULL,
     PRIMARY KEY (ID_Wynajem)
-);
-
-CREATE TABLE Wynajem_Pracownicy (
-    ID_wynajem_pracownicy NUMBER(10) NOT NULL,
-    ID_Wynajem NUMBER(10) NOT NULL,
-    ID_Pracownik NUMBER(10) NOT NULL,
-    PRIMARY KEY (ID_wynajem_pracownicy)
-);
-
-CREATE TABLE Wynajem_Klient (
-    ID_Wynajem_Klient NUMBER(10) NOT NULL,
-    ID_Wynajem NUMBER(10) NOT NULL,
-    ID_Klient NUMBER(10) NOT NULL,
-    PRIMARY KEY (ID_Wynajem_Klient)
-);
-
-CREATE TABLE Wynajem_Samochod (
-    ID_Wynajem_Samochod NUMBER(10) NOT NULL,
-    ID_Wynajem NUMBER(10) NOT NULL,
-    ID_Samochod NUMBER(10) NOT NULL,
-    PRIMARY KEY (ID_Wynajem_Samochod)
 );
 
 CREATE TABLE Sprzedaz (
@@ -291,20 +282,16 @@ ALTER TABLE Magazyn ADD FOREIGN KEY (ID_Akcesorium) REFERENCES Akcesoria(ID_Akce
 ALTER TABLE Magazyn ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
 ALTER TABLE Magazyn ADD FOREIGN KEY (ID_Czesc) REFERENCES Czesci(ID_Czesc);
 
-ALTER TABLE Wynajem_Pracownicy ADD FOREIGN KEY (ID_Pracownik) REFERENCES Pracownicy(ID_Pracownik);
-ALTER TABLE Wynajem_Pracownicy ADD FOREIGN KEY (ID_Wynajem) REFERENCES Wynajem(ID_Wynajem);
-
-ALTER TABLE Wynajem_Klient ADD FOREIGN KEY (ID_Klient) REFERENCES Klient(ID_Klient);
-ALTER TABLE Wynajem_Klient ADD FOREIGN KEY (ID_Wynajem) REFERENCES Wynajem(ID_Wynajem);
-
 ALTER TABLE Czesci_Samochod ADD FOREIGN KEY (ID_Czesci) REFERENCES Czesci(ID_Czesc);
 ALTER TABLE Czesci_Samochod ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
 
-ALTER TABLE Wynajem_Samochod ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
-ALTER TABLE Wynajem_Samochod ADD FOREIGN KEY (ID_Wynajem) REFERENCES Wynajem(ID_Wynajem);
-
-ALTER TABLE Akcesoria_Samochod ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
-ALTER TABLE Akcesoria_Samochod ADD FOREIGN KEY (ID_Akcesoria) REFERENCES Akcesoria(ID_Akcesorium);
-
 ALTER TABLE Dodatkowe_Samochod ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
 ALTER TABLE Dodatkowe_Samochod ADD FOREIGN KEY (ID_Dodatkowe) REFERENCES Dodatkowe_Wyposazenie(ID_Wyposazenie);
+
+ALTER TABLE Wynajem ADD FOREIGN KEY (ID_Pracownik) REFERENCES Pracownicy(ID_Pracownik);
+ALTER TABLE Wynajem ADD FOREIGN KEY (ID_Klient) REFERENCES Klient(ID_Klient);
+ALTER TABLE Wynajem ADD FOREIGN KEY (ID_Samochod) REFERENCES Samochod(ID_Samochodu);
+
+ALTER TABLE Ulica_slownik ADD FOREIGN KEY (ID_Miasto) REFERENCES Miasto_slownik(ID_Miasto);
+
+ALTER TABLE Adres ADD FOREIGN KEY (ID_Ulica) REFERENCES Ulica_slownik(ID_Ulica);

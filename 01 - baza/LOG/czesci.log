@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 21.0.0.0.0 - Production on Sat May 27 00:05:45 2023
+SQL*Loader: Release 21.0.0.0.0 - Production on Sat Jun 17 16:16:37 2023
 Version 21.3.0.0.0
 
 Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
@@ -34,24 +34,6 @@ NUMER                                NEXT    15   ,  O(") CHARACTER
 CENA                                 NEXT     *   ,  O(") CHARACTER            
                                                       O(")
 
+SQL*Loader-926: OCI error while executing delete/truncate (due to REPLACE/TRUNCATE keyword) for table CZESCI
+ORA-02292: integrity constraint (C##DB2.SYS_C0019350) violated - child record found
 
-Table CZESCI:
-  500 Rows successfully loaded.
-  0 Rows not loaded due to data errors.
-  0 Rows not loaded because all WHEN clauses were failed.
-  0 Rows not loaded because all fields were null.
-
-
-Space allocated for bind array:                 159000 bytes(250 rows)
-Read   buffer bytes: 1048576
-
-Total logical records skipped:          0
-Total logical records read:           500
-Total logical records rejected:         0
-Total logical records discarded:        0
-
-Run began on Sat May 27 00:05:45 2023
-Run ended on Sat May 27 00:05:46 2023
-
-Elapsed time was:     00:00:00.20
-CPU time was:         00:00:00.14

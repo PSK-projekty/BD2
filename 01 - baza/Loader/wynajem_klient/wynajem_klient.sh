@@ -1,1 +1,0 @@
-sqlldr CONTROL=wynajem_klient.ctl   skip=0   

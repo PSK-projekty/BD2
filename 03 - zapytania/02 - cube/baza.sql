@@ -1,44 +1,40 @@
---Zapytanie 1: Liczba sprzedanych samochodów grupowane według segmentu, roku produkcji i typu napędu.
+--Zapytanie 1: Suma wynagrodzeń pracowników na poszczególnych stanowiskach w różnych miastach.
 
-    SELECT Segment, RokProdukcji, Naped, COUNT(*) AS LiczbaSprzedanych
-    FROM Sprzedaz s
-    JOIN Samochod sa ON s.ID_Samochod = sa.ID_Samochodu
-    JOIN Model m ON sa.ID_Model = m.ID_Model
-    GROUP BY CUBE (Segment, RokProdukcji, Naped);
+    SELECT Miasto_slownik.Nazwa_miasta, Stanowiska.Nazwa, SUM(Pracownicy.Pensja) AS SumaWynagrodzen
+    FROM Miasto_slownik
+    JOIN Ulica_slownik ON Miasto_slownik.ID_Miasto = Ulica_slownik.ID_Miasto
+    JOIN Adres ON Ulica_slownik.ID_Ulica = Adres.ID_Ulica
+    JOIN Pracownicy ON Adres.ID_Adres = Pracownicy.ID_Adres
+    JOIN Stanowiska ON Pracownicy.ID_Stanowisko = Stanowiska.ID_Stanowiska
+    GROUP BY CUBE (Miasto_slownik.Nazwa_miasta, Stanowiska.Nazwa);
 
-    --To zapytanie generuje zestawienie, w którym dla każdej kombinacji segmentu, roku produkcji i typu napędu podaje liczbę sprzedanych samochodów. Dzięki użyciu operatora CUBE, wynik zawiera również sumy częściowe dla poszczególnych poziomów grupowania, np. sumę sprzedaży dla konkretnego segmentu niezależnie od roku produkcji i napędu.
-    --Task competed in 0,061; 0,066; 0,061 seconds
-    --346 rows
+    --Task competed in 0,157; 0,151; 0,155 seconds
+    --671 rows
 
---Zapytanie 2: Naprawy samochodów, grupowane według typu naprawy, statusu naprawy i roku przyjęcia.
+--Zapytanie 2: Średnia liczba sprzedanych akcesoriów na poszczególnych stanowiskach, w różnych miastach i salonach samochodowych.
 
-    SELECT n.Typ_naprawy, 
-        CASE 
-            WHEN n.Data_wydania IS NULL THEN 'W naprawie' 
-            ELSE 'Zakończona' 
-        END AS StatusNaprawy, 
-        EXTRACT(YEAR FROM n.Data_przyjecia) AS RokPrzyjecia, 
-        COUNT(*) AS LiczbaNapraw
-    FROM Naprawa n
-    JOIN Samochod s ON n.ID_Samochod = s.ID_Samochodu
-    JOIN Model m ON s.ID_Model = m.ID_Model
-    GROUP BY CUBE (n.Typ_naprawy, CASE WHEN n.Data_wydania IS NULL THEN 'W naprawie' ELSE 'Zakończona' END, EXTRACT(YEAR FROM n.Data_przyjecia));
+    SELECT Miasto_slownik.Nazwa_miasta, Salon_Samochodowy.Nazwa, TRUNC(Wynajem.Data_wynajmu), SUM(Wynajem.Cena) AS SumaCenWynajmu
+    FROM Wynajem
+    JOIN Klient ON Wynajem.ID_Klient = Klient.ID_Klient
+    JOIN Adres ON Klient.ID_Adres = Adres.ID_Adres
+    JOIN Ulica_slownik ON Adres.ID_Ulica = Ulica_slownik.ID_Ulica
+    JOIN Miasto_slownik ON Ulica_slownik.ID_Miasto = Miasto_slownik.ID_Miasto
+    JOIN Pracownicy ON Wynajem.ID_Pracownik = Pracownicy.ID_Pracownik
+    JOIN Salon_Samochodowy ON Pracownicy.ID_Salon = Salon_Samochodowy.ID_Salonu
+    GROUP BY CUBE (Miasto_slownik.Nazwa_miasta, Salon_Samochodowy.Nazwa, TRUNC(Wynajem.Data_wynajmu));
 
-    --To zapytanie analizuje dane dotyczące napraw samochodowych i oblicza liczbę napraw dla różnych kategorii, takich jak typ naprawy, status naprawy (w naprawie lub zakończona) oraz rok przyjęcia naprawy. Wykorzystuje operację GROUP BY CUBE, która generuje wyniki dla wszystkich kombinacji wartości wskazanych kolumn.
-    --Task competed in 0,06; 0,063; 0,058 seconds
-    --373 rows
+    --Task competed in 2,362; 2,211; 1,828 seconds
+    --4812 rows
 
---Zapytanie 3: Liczba klientów i sprzedanych samochodów według miasta i segmentu.
+--Zapytanie 3: Suma kosztów zakupu części samochodowych dla poszczególnych klientów, salonów samochodowych i kategorii części.
 
-    SELECT a.Miasto, m.Segment, COUNT(DISTINCT k.ID_Klient) AS LiczbaKlientow, COUNT(DISTINCT sp.ID_Samochod) AS LiczbaSprzedanychSamochodow
-    FROM Sprzedaz sp
-    JOIN Klient k ON sp.ID_Klient = k.ID_Klient
-    JOIN Adres a ON k.ID_Adres = a.ID_Adres
-    JOIN Samochod s ON sp.ID_Samochod = s.ID_Samochodu
-    JOIN Model m ON s.ID_Model = m.ID_Model
-    GROUP BY CUBE (a.Miasto, m.Segment)
-    ORDER BY a.Miasto, m.Segment;
+    SELECT Klient.ID_Klient, Salon_Samochodowy.Nazwa, Czesci.Nazwa, SUM(Czesci.Cena) AS SumaKosztowZakupu
+    FROM Sprzedaz
+    JOIN Klient ON Sprzedaz.ID_Klient = Klient.ID_Klient
+    JOIN Czesci ON Sprzedaz.ID_Czesc = Czesci.ID_Czesc
+    JOIN Pracownicy ON Sprzedaz.ID_Pracownik = Pracownicy.ID_Pracownik
+    JOIN Salon_Samochodowy ON Pracownicy.ID_Salon = Salon_Samochodowy.ID_Salonu
+    GROUP BY CUBE (Klient.ID_Klient, Salon_Samochodowy.Nazwa, Czesci.Nazwa);
 
-    --To zapytanie grupuje dane ze sprzedaży samochodów na podstawie miasta (a.Miasto) i segmentu (m.Segment) oraz oblicza liczbę unikalnych klientów (LiczbaKlientow) i liczbę sprzedanych samochodów (LiczbaSprzedanychSamochodow) dla każdej kombinacji miasto-segment. Dodatkowo, wykorzystuje funkcję CUBE w klauzuli GROUP BY, co pozwala na generowanie agregacji dla wszystkich możliwych kombinacji grupowania.
-    --Task competed in 0,225; 0,216; 0,221 seconds
-    --1026 rows
+    --Task competed in 8,347; 8,732; 8,420 seconds
+    --21365 rows

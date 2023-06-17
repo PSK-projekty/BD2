@@ -3,6 +3,8 @@ set "user=c##DB2"
 set "pass=toor" 
 set "instance=xe"
 
+sqlldr %user%/%pass%@%instance% CONTROL=Loader\miasto_slownik\miasto_slownik.ctl
+sqlldr %user%/%pass%@%instance% CONTROL=Loader\ulica_slownik\ulica_slownik.ctl
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\adres\adres.ctl
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\akcesoria\akcesoria.ctl
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\model\model.ctl
@@ -22,9 +24,6 @@ sqlldr %user%/%pass%@%instance% CONTROL=Loader\czesci_samochod\czesci_samochod.c
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\dodatkowe_samochod\dodatkowe_samochod.ctl
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\akcesoria_samochod\akcesoria_samochod.ctl
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\wynajem\wynajem.ctl
-sqlldr %user%/%pass%@%instance% CONTROL=Loader\wynajem_klient\wynajem_klient.ctl
-sqlldr %user%/%pass%@%instance% CONTROL=Loader\wynajem_pracownicy\wynajem_pracownicy.ctl
-sqlldr %user%/%pass%@%instance% CONTROL=Loader\wynajem_samochod\wynajem_samochod.ctl
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\sprzedaz\sprzedaz.ctl
 sqlldr %user%/%pass%@%instance% CONTROL=Loader\platnosc\platnosc.ctl
 move *.log Log

@@ -1,0 +1,1 @@
+sqlldr CONTROL=miasto_slownik.ctl   skip=0   
