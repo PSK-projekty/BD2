@@ -1,0 +1,1 @@
+sqlldr CONTROL=jazda_probna.ctl   skip=0   

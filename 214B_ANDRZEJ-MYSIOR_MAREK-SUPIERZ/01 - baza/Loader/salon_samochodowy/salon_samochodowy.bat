@@ -1,0 +1,1 @@
+sqlldr CONTROL=salon_samochodowy.ctl   skip=0   

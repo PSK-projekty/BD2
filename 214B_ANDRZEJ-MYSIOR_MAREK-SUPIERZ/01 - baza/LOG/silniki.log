@@ -1,0 +1,47 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Sat Jun 17 16:16:36 2023
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Loader\silniki\silniki.ctl
+Data File:      .\\Dane\\silniki.csv
+  File processing option string: "str '\r\n'"
+  Bad File:     Loader\silniki\silniki.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table SILNIKI, loaded from every logical record.
+Insert option in effect for this table: REPLACE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+ID_SILNIK                           FIRST     *   ,  O(") CHARACTER            
+                                                      O(")
+POJEMNOSC                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+MOC_KW                               NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+MOC_KM                               NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+MOMENT_OBROTOWY                      NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+TYP_SILNIKA                          NEXT    20   ,  O(") CHARACTER            
+                                                      O(")
+PALIWO                               NEXT    20   ,  O(") CHARACTER            
+                                                      O(")
+NUMER                                NEXT    15   ,  O(") CHARACTER            
+                                                      O(")
+
+SQL*Loader-926: OCI error while executing delete/truncate (due to REPLACE/TRUNCATE keyword) for table SILNIKI
+ORA-02292: integrity constraint (C##DB2.SYS_C0019354) violated - child record found
+

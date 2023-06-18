@@ -1,0 +1,1 @@
+sqlldr CONTROL=stanowiska.ctl   skip=0   

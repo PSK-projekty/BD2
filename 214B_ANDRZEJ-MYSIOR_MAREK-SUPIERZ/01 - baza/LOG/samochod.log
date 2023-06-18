@@ -1,0 +1,55 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Sat Jun 17 16:16:38 2023
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Loader\samochod\samochod.ctl
+Data File:      .\\Dane\\samochod.csv
+  File processing option string: "str '\r\n'"
+  Bad File:     Loader\samochod\samochod.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table SAMOCHOD, loaded from every logical record.
+Insert option in effect for this table: REPLACE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+ID_SAMOCHODU                        FIRST     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_MODEL                             NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_SALONU                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_WERSJA                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_SILNIK                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_WYPOSAZENIE                       NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+NAPED                                NEXT    10   ,  O(") CHARACTER            
+                                                      O(")
+KOLOR                                NEXT    10   ,  O(") CHARACTER            
+                                                      O(")
+VIN                                  NEXT    20   ,  O(") CHARACTER            
+                                                      O(")
+ROKPRODUKCJI                         NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+PRZEBIEG                             NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+CENA                                 NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+
+SQL*Loader-926: OCI error while executing delete/truncate (due to REPLACE/TRUNCATE keyword) for table SAMOCHOD
+ORA-02292: integrity constraint (C##DB2.SYS_C0019348) violated - child record found
+

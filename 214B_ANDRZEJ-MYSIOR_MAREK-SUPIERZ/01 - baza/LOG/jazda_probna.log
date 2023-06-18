@@ -1,0 +1,59 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Sat Jun 17 16:16:38 2023
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Loader\jazda_probna\jazda_probna.ctl
+Data File:      .\\Dane\\jazda_probna.csv
+  File processing option string: "str '\r\n'"
+  Bad File:     Loader\jazda_probna\jazda_probna.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table JAZDA_PROBNA, loaded from every logical record.
+Insert option in effect for this table: REPLACE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+ID_JAZDA_PROBNA                     FIRST     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_SAMOCHOD                          NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_PRACOWNIK                         NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_KLIENT                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+DATA                                 NEXT     *   ,  O(") DATE RRRR-MM-DD      
+                                                      O(")
+
+
+Table JAZDA_PROBNA:
+  1000 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 322500 bytes(250 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:          1000
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Sat Jun 17 16:16:38 2023
+Run ended on Sat Jun 17 16:16:38 2023
+
+Elapsed time was:     00:00:00.19
+CPU time was:         00:00:00.11

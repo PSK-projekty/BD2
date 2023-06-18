@@ -1,0 +1,1 @@
+sqlldr CONTROL=dodatkowe_samochod.ctl   skip=0   

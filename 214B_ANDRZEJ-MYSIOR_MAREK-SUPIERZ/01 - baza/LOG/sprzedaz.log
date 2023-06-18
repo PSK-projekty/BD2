@@ -1,0 +1,55 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Sat Jun 17 16:16:40 2023
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Loader\sprzedaz\sprzedaz.ctl
+Data File:      .\\Dane\\sprzedaz.csv
+  File processing option string: "str '\r\n'"
+  Bad File:     Loader\sprzedaz\sprzedaz.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table SPRZEDAZ, loaded from every logical record.
+Insert option in effect for this table: REPLACE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+ID_SPRZEDAZ                         FIRST     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_SAMOCHOD                          NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_AKCESORIUM                        NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_PRACOWNIK                         NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_KLIENT                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_CZESC                             NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_WYNAJEM                           NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_WERSJA                            NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_NAPRAWA                           NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+ID_SALON                             NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+DATA                                 NEXT     *   ,  O(") DATE YYYY-MM-DD      
+                                                      O(")
+KWOTA                                NEXT     *   ,  O(") CHARACTER            
+                                                      O(")
+
+SQL*Loader-926: OCI error while executing delete/truncate (due to REPLACE/TRUNCATE keyword) for table SPRZEDAZ
+ORA-02292: integrity constraint (C##DB2.SYS_C0019345) violated - child record found
+
